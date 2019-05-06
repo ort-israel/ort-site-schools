@@ -1,0 +1,192 @@
+/********************
+Search School Filter
+******************* */
+.elementor-28963 .elementor-element.elementor-element-1ce23c8 {
+    width: 25%;
+    margin-bottom: 2.5rem;
+}
+
+.post-28963 .schools_filter_form {
+    margin-bottom: 2.5rem;
+}
+
+.schools_filter_form label[for="schools_filter_text"] {
+    display: block;
+}
+
+.schools_filter_form .schools_filter_text {
+    width: 100%;
+    background-color: #F5F5F5;
+    border: none;
+}
+
+
+/********************
+Map
+******************* */
+
+#map {
+    height: 50rem;
+}
+
+/* Make sure the map does'nt shrink just becasue the list of cities has shrinked */
+.post-28963 .elementor-element-595b5b5 .elementor-container {
+    min-height: 50rem;
+}
+
+@media screen and (min-width: 768px) {
+    .post-28963 .schools_filter_form {
+        width: 25%; /* be as wide as the school list, which is 25% */
+    }
+
+    .post-28963 .elementor-element-595b5b5 .elementor-top-column {
+        max-height: 51rem;
+    }
+
+    .post-28963 .elementor-element-595b5b5 .elementor-row .elementor-top-column:nth-child(1) {
+        overflow-y: scroll;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /* in mobile, the map's position shouldn't be absolute because then it gets hidden by footer */
+    #map {
+        position: relative !important;
+        overflow: visible;
+    }
+
+}
+
+
+/* Info window */
+.page .entry-content .info_window_header {
+    background-color: #f5f5f5;
+    padding: 0.5rem;
+    font-weight: bold;
+    font-size: 2.2rem;
+    font-family: open_sans_hebrew_condensedRg, Arial, sans-serif;
+    border-bottom: 0.4rem solid #d00557;
+}
+
+.info_window_content {
+    font-family: open_sans_hebrew_condensedRg, Arial, sans-serif;
+    font-size: 1.8rem;
+    padding: 0.5rem;
+    line-height: 1.5;
+}
+
+.info_window_school_link {
+    color: #d00557;
+    word-break: break-word;
+    display: inline-block;
+    text-align: left;
+}
+
+.info_window_term {
+    font-weight: bold;
+}
+
+/* The wrappers of the info window. The classes are given by Google Maps */
+.gm-style-iw-d {
+    overflow: initial !important;
+}
+
+.gm-style .gm-style-iw-c {
+    border-radius: 0 !important;
+    padding: 0 !important;
+}
+
+/* When these classes appear, we change the style a little */
+.gm-style .gm-style-iw-c .info_window_header {
+    background-color: transparent;
+    padding: 1.2rem; /* instead of padding in parent */
+
+}
+
+.gm-style .gm-style-iw-c .info_window_content {
+    padding: 1.2rem; /* instead of padding in parent */
+}
+
+/********************
+Shcool List
+******************* */
+.post-28963 .elementor-widget-accordion .elementor-accordion .elementor-tab-title.elementor-active {
+    color: inherit;
+    font-weight: bold;
+    border-top: 0.4rem solid #d00557;
+}
+
+.post-28963 .elementor-widget-accordion .elementor-accordion .elementor-tab-title {
+    color: inherit;
+    font-weight: normal;
+    background-color: #f5f5f5;
+}
+
+.post-28963 .elementor-accordion .elementor-accordion-item {
+    border-right: none;
+    border-left: none;
+    border-top: 0.4rem solid #fff;
+    border-bottom: 0.4rem solid #fff;
+}
+
+.post-28963 .elementor-accordion .fa-plus::before {
+    content: '+';
+    font-family: open_sans_hebrew_condensedRg, Arial, Sans-serif;
+}
+
+.post-28963 .elementor-accordion .fa-minus::before {
+    content: '-';
+    font-family: open_sans_hebrew_condensedRg;
+}
+
+/* Links */
+.post-28963 ul {
+    list-style: disc inside;
+    font-size: 1.2rem; /* for a small dot */
+    vertical-align: middle; /* to align with the link text */
+    color: #d00557;
+}
+
+.post-28963 ul a {
+    font-size: 2.2rem;
+    vertical-align: middle;
+    color: #d00557;
+    border-bottom: 1px dotted;
+}
+
+.post-28963 ul a:hover,
+.post-28963 ul a:focus {
+    border-bottom-style: solid;
+}
+
+/**************************
+Buttons to map and to list
+************************ */
+a.schools_page_link.schools_page_link {
+    background-color: #d00557;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: -3px 3px 0px 0px #939393;
+    font-size: 1.4rem;
+    position: fixed;
+    z-index: 10;
+    bottom: 3rem;
+    left: 3rem;
+    text-align: center;
+}
+
+a.schools_page_link.link_to_map,
+a.schools_page_link.link_to_list {
+    padding: 0.7rem 1.5rem 0.5rem;
+}
+
+a.schools_page_link.link_to_list {
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+}
+
+a.schools_page_link .fas {
+    display: block;
+    font-size: 20px;
+}
