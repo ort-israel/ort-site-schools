@@ -75,7 +75,7 @@ jQuery(document).ready(function ($) {
      * 3. Any markers showing on the map should be closed
      * @param self - $("#schools_filter_text")
      */
-    function schoolsFilterTextFocusHandler(self, e) {
+    function schoolsFilterTextFocusHandler(self) {
         // return map to original bounds and size
         resetMap();
         // filter the schools

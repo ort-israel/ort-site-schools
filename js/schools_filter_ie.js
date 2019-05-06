@@ -15,8 +15,8 @@ jQuery(document).ready(function ($) {
         filterSchools($(this), e);
     });
 
-    $("#schools_filter_text").on('focus', function (e) {
-        schoolsFilterTextFocusHandler($(this), e);
+    $("#schools_filter_text").on('focus', function () {
+        schoolsFilterTextFocusHandler($(this));
     });
 
     /* When a city name is clicked call the cityClickedHandler function */
@@ -36,41 +36,55 @@ jQuery(document).ready(function ($) {
      * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
-    function filterSchools(self, event) {
+    function filterSchools(self) {
 
 
         /* Create the Regular Expression from the search text and then filter out the cities that don't match the Regular Expression. */
         var matcher = new RegExp(self.val(), 'gi');
 
-        /* Start with SCHOOL names - find('.elementor-tab-content a') -
-        * If it doesn't match the searched value, Check the city name:
+
+        /* Start with CITY names - find('.elementor-tab-content a') -
+        * find the schools that don't match the searched value,
+        * then Check the city name:
         * If it doesn't match the searched value hide the whole city.
-         * If the city does match the searched value, leave it showing.
-         * Start with showing all, for cases when the search changed completely */
-        $('.elementor-accordion-item').show().each(function () {
+        * If the city does match the searched value, leave it showing.
+        * Start with showing all, for cases when the search changed completely */
+        let shownCities = $('.elementor-accordion-item').show().each(function () {
                 if (!matcher.test($(this).find('.elementor-tab-content li').text())) {
                     // if city name doesn't contain the value entered, hide it
                     if (!matcher.test($(this).find('.elementor-tab-title a').text())) {
                         $(this).hide();
-                        // console.log($(this).find('.elementor-tab-title a').text());
                     } else {
-                        console.log(1);
                         // if the title (city name) does contain the value, leave it showing and also show all the school names
-                        // $(this).find('.elementor-tab-content a').hide();
-                        console.log($(this));
+                        $(this).find('.elementor-tab-content li').show();
                     }
-                } else {
-                    $(this).find('.elementor-tab-content').hide();
                 }
             }
         );
+
+        /* Then go on with the schools in the shown cities: hide all schools that don't match the value,
+        * but only in the cities that don't match the value.
+        * Because in the cities that do match the value we want to show all schools */
+        shownCities
+            .not(matcher.test($(this).find('.elementor-tab-title a').text()))
+            .find('.elementor-tab-content li').show().not(function () {
+            return matcher.test($(this).text())
+        }).hide();
+
     }
 
-    function schoolsFilterTextFocusHandler(self, e) {
+    /**
+     * What to do when user puts focus on the text input of the school filter:
+     * 1. The map should go back to initial state
+     * 2. The cities and schools should be filtered acoording to whatever input is in the text box
+     * 3. Any markers showing on the map should be closed
+     * @param self - $("#schools_filter_text")
+     */
+    function schoolsFilterTextFocusHandler(self) {
         // return map to original bounds and size
         resetMap();
         // filter the schools
-        filterSchools(self, e);
+        filterSchools(self);
         // close any open markers and infowindows
         closeClickHandler();
     }
@@ -80,6 +94,7 @@ jQuery(document).ready(function ($) {
      ***************************************/
 
     let map, geocoder, kmlLayer, infowindow, marker;
+    let mapIsReset = true;
 
     /**
      * Needs to called before the map is created,
@@ -145,6 +160,7 @@ jQuery(document).ready(function ($) {
      */
     function resetMap() {
         kmlLayer.setMap(map);
+        mapIsReset = true;
     }
 
     /**
@@ -199,6 +215,7 @@ jQuery(document).ready(function ($) {
                     });
                 });
             }
+            mapIsReset = false;
         }
     }
 
@@ -284,6 +301,12 @@ jQuery(document).ready(function ($) {
         /* If the click was to open city, change the map bounds.
          * Else the click is closing the city, and the bpunds should return to original */
         if (accordionItem.hasClass('cityOpen')) {
+            /* if we clicked after search, some of the schools might be hidden.
+            * If the map is reset that means we're in filter mode, and we want to show only the filtered schools.
+            * But if the map is focused then we're in regular mode and we want to show all schools */
+            if (!mapIsReset) {
+                accordionItem.find('li').show();
+            }
             // this is the link that was clicked, and its inner HTML contains the city name
             let address = $(this).children('a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
