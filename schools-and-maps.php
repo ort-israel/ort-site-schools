@@ -61,15 +61,17 @@ class SchoolsAndMaps {
 	 * The JS that runs it is called in the enqueue_scripts function
 	 */
 	public function schools_filter_shortcode() {
-		?>
-        <div class="schools_filter_wrapper">
+
+		$str = ' <div class="schools_filter_wrapper">
             <form class="schools_filter_form">
-                <label for="schools_filter_text"><?php _e( 'Where would you like to learn?', 'schools-and-maps' ) ?></label>
+                <label for="schools_filter_text">' . __( 'Where would you like to learn?', 'schools-and-maps' ) . '</label>
                 <input type="text" id="schools_filter_text" class="schools_filter_text"
-                       placeholder="<?php _e( 'City or school that interest you', 'schools-and-maps' ) ?>">
+                       placeholder="' . __( 'City or school that interest you', 'schools-and-maps' ) . '">
             </form>
-        </div>
-	<?php }
+        </div>';
+
+		return $str;
+	}
 
 
 	/**
