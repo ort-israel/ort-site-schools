@@ -15,12 +15,25 @@ jQuery(document).ready(function ($) {
     });
 
     /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', cityClickedHandler);
+    $('.elementor-accordion .elementor-tab-title').on('click', function () {
+            if ($('.find-ort').is(":visible")) {
+                $('.find-ort').hide(2000);
+                console.log(1);
+                initMap();
+            }
+            cityClickedHandler($(this));
+        }
+    );
+
+    /* When the button on the map image is clicked, initialize the map */
+    $('.elementor-button').on('click', () => {
+        $('.find-ort').hide(2000);
+        initMap();
+    });
 
     /* There is a button to jump from the city list to the map, and a button to kump back.
     * They  interchange on scroll */
     window.addEventListener('scroll', windowScrollHandler);
-
 
     /**********************************
      ***** SEARCH SCHOOLS FILTER ******
@@ -33,39 +46,107 @@ jQuery(document).ready(function ($) {
      */
     function filterSchools(self) {
 
-
-        /* Create the Regular Expression from the search text and then filter out the cities that don't match the Regular Expression. */
-        var matcher = new RegExp(self.val(), 'gi');
-
-
-        /* Start with CITY names - find('.elementor-tab-content a') -
-        * find the schools that don't match the searched value,
-        * then Check the city name:
-        * If it doesn't match the searched value hide the whole city.
-        * If the city does match the searched value, leave it showing.
+        /* Start with SCHOOL names - find('.elementor-tab-content a') -
+        * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
-        let shownCities = $('.elementor-accordion-item').show().each(function () {
-                if (!matcher.test($(this).find('.elementor-tab-content li').text())) {
-                    // if city name doesn't contain the value entered, hide it
-                    if (!matcher.test($(this).find('.elementor-tab-title a').text())) {
-                        $(this).hide();
-                    } else {
-                        // if the title (city name) does contain the value, leave it showing and also show all the school names
-                        $(this).find('.elementor-tab-content li').show();
+        let shownCitiesBecauseOfSchools = [];
+
+        // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
+        $('.elementor-accordion-item').show().each(function () {
+                // now show all schools (because some of them might have been hidden by previous search)
+                $(this).find('.elementor-tab-content li').show();
+
+                $(this).find('.elementor-tab-content li a').toArray().some(school => {
+                    $(school).text(removeMarkTheSearchedValue($(school).text()));
+                    /* Then look for the searched value. If it exists, do 2 things:
+                    * 1. Mark the search string in the school name
+                    * 2. add the accordion item to the array of items that should be shown */
+                    if ($(school).text().indexOf(self.val()) > -1) {
+                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
+                        shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
                     }
-                }
+                });
+
             }
         );
 
-        /* Then go on with the schools in the shown cities: hide all schools that don't match the value,
-        * but only in the cities that don't match the value.
-        * Because in the cities that do match the value we want to show all schools */
-        shownCities
-            .not(matcher.test($(this).find('.elementor-tab-title a').text()))
-            .find('.elementor-tab-content li').show().not(function () {
-            return matcher.test($(this).text())
-        }).hide();
+        // console.log(shownCitiesBecauseOfSchools);
+        /* Then Check the city name:
+        * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
+        $('.elementor-accordion-item').each(function () {
+            let isItemInShownCities = false;
+            let doesItemCityHaveValue = false;
+            let currCityName = $(this).find('.elementor-tab-title a').text();
+            $(shownCitiesBecauseOfSchools).each(function () {
+                if (currCityName == $(this).find('.elementor-tab-title a').text()) {
+                    isItemInShownCities = true;
+                    return true;
+                }
+            });
 
+            // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
+            if (currCityName.indexOf(self.val()) > -1) {
+                doesItemCityHaveValue = true;
+            }
+            /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
+            if (!isItemInShownCities && !doesItemCityHaveValue) {
+                $(this).hide();
+            }
+
+            // The cities that don't contain the searched value but have schools with the searched value, hide the schools that don't have the searched value
+            // if (isItemInShownCities && !doesItemCityHaveValue) {
+            //     let currSchools = $(this).find('.elementor-tab-content li a');
+            //     console.log(currSchools);
+            //     console.log(1);
+            //
+            //     currSchools.each(function () {
+            //         if ($(this).text().indexOf(self.val()) === -1) {
+            //             $(this).parent().hide();
+            //         }
+            //     });
+            // }
+        });
+
+
+        /* Then go on with the schools in the cities that are shown because they have schools that match the searched value:
+        * hide all schools in that city, that don't match the value */
+        // if (typeof shownCitiesBecauseOfSchools !== 'undefined') {
+        //
+        //     $(shownCitiesBecauseOfSchools).each(function () {
+        //         let currSchools = $(this).find('.elementor-tab-content li a');
+        //
+        //         currSchools.each(function () {
+        //             if (!matcher.test($(this).text())) {
+        //                 $(this).parent().hide();
+        //             }
+        //         });
+        //     });
+        // }
+
+    }
+
+    /**
+     * Make the searched value stand out in the schoo name
+     * @param stringToMark
+     * @param startMark
+     * @param markLength
+     * @returns {string}
+     */
+    function markTheSearchedValue(stringToMark, startMark, markLength) {
+        return stringToMark.slice(0, startMark)
+            + '<span class="searched-school-mark">'
+            + stringToMark.slice(startMark, startMark + markLength)
+            + '</span>'
+            + stringToMark.slice(startMark + markLength);
+    }
+
+    /**
+     * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
+     * @param stringToRemoveMark
+     * @returns {string}
+     */
+    function removeMarkTheSearchedValue(stringToRemoveMark) {
+        return stringToRemoveMark.replace('<span class="mark">', '').replace('</span>', '');
     }
 
     /**
@@ -84,6 +165,7 @@ jQuery(document).ready(function ($) {
         closeClickHandler();
     }
 
+
     /***************************************
      * ********* Google Maps API ********* *
      ***************************************/
@@ -98,7 +180,8 @@ jQuery(document).ready(function ($) {
     updateCitiesFile();
 
     /* Call initMap to initialize the map */
-    initMap();
+
+    //initMap();
 
     /**
      * Initialize the map and all its objects - kmlLayer, infowindow
@@ -132,9 +215,9 @@ jQuery(document).ready(function ($) {
     /**
      * Create map and center it in the center of Israel
      */
-    function createMap() {
+    function createMap(lat = 32.61074307932485, long = 36.474776492187516) {
         let mapOptions = {
-            center: new google.maps.LatLng(32.61074307932485, 36.474776492187516),
+            center: new google.maps.LatLng(lat, long),
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
@@ -154,8 +237,10 @@ jQuery(document).ready(function ($) {
      * Reset the map to the kmlLayer
      */
     function resetMap() {
-        kmlLayer.setMap(map);
-        mapIsReset = true;
+        if (typeof kmlLayer !== 'undefined') {
+            kmlLayer.setMap(map);
+            mapIsReset = true;
+        }
     }
 
     /**
@@ -281,11 +366,12 @@ jQuery(document).ready(function ($) {
      * It looks up the city in our JSON file (cities_map.json, in the JS folder of this plugin),
      * returns its coordinates, and those coordinates are assigned to the center of the map.
      */
-    function cityClickedHandler() {
+    function cityClickedHandler(self) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        let accordionItem = $(this).parent();
+        let accordionItem = self.parent();
+
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
         }
@@ -301,7 +387,7 @@ jQuery(document).ready(function ($) {
                 accordionItem.find('li').show();
             }
             // this is the link that was clicked, and its inner HTML contains the city name
-            let address = $(this).children('a').html();
+            let address = self.children('a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
@@ -582,5 +668,58 @@ jQuery(document).ready(function ($) {
             rect.top >= 0 &&
             rect.top <= $(window).height()
         );
+    }
+
+    /* Watch accessibility css change of background color */
+    bodyCssChange();
+
+    /**
+     * taken from here:
+     * https://stackoverflow.com/a/20683311/278
+     */
+    function bodyCssChange() {
+        // Select the node that will be observed for mutations
+        var targetNode = document.getElementById('page');
+        // Options for the observer (which mutations to observe)
+        var config = {
+            attributes: true,
+            attributeFilter: ['style'],
+            characterData: true,
+            childList: false,
+            subtree: false,
+            attributeOldValue: true,
+            characterDataOldValue: true
+        };
+
+        // Callback function to execute when mutations are observed
+        var index = 0;
+        var callback = function (mutationsList) {
+            for (var mutation of mutationsList) {
+                // console.log(mutation);
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    console.log(typeof map !== 'undefined');
+                    $('#map').css({
+                        'background-color': 'transparent'
+                    });
+                    let currElements = $('#map').children();
+                    while (currElements.length > 0) {
+                        currElements.css({
+                            'background-color': 'transparent'
+                        });
+                        currElements = currElements.children();
+                    }
+
+                }
+            }
+        };
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+
+        // Later, you can stop observing
+        //observer.disconnect();
     }
 });

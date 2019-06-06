@@ -10,7 +10,8 @@ jQuery(document).ready(function ($) {
      ************* EVENTS *************
      **********************************/
 
-    /* When a user types, or focuses in the text input call the filterSchools function */
+    /* When a user types, or focuses in the text input call the filterSchools function.
+    * Can't use arrow function because the this isn't the element which the event happened on */
     $("#schools_filter_text").on('keyup', function (e) {
         filterSchools($(this), e);
     });
@@ -20,7 +21,20 @@ jQuery(document).ready(function ($) {
     });
 
     /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', cityClickedHandler);
+    $('.elementor-accordion .elementor-tab-title').on('click', function () {
+            if ($('.find-ort').is(":visible")) {
+                $('.find-ort').hide(2000);
+                initMap();
+            }
+            cityClickedHandler($(this));
+        }
+    );
+
+    /* When the button on the map image is clicked, initialize the map */
+    $('.elementor-button').on('click', function () {
+        $('.find-ort').hide(2000);
+        initMap();
+    });
 
     /* There is a button to jump from the city list to the map, and a button to kump back.
     * They  interchange on scroll */
@@ -39,38 +53,88 @@ jQuery(document).ready(function ($) {
     function filterSchools(self) {
 
 
-        /* Create the Regular Expression from the search text and then filter out the cities that don't match the Regular Expression. */
-        var matcher = new RegExp(self.val(), 'gi');
-
-
         /* Start with CITY names - find('.elementor-tab-content a') -
         * find the schools that don't match the searched value,
         * then Check the city name:
         * If it doesn't match the searched value hide the whole city.
         * If the city does match the searched value, leave it showing.
         * Start with showing all, for cases when the search changed completely */
-        let shownCities = $('.elementor-accordion-item').show().each(function () {
-                if (!matcher.test($(this).find('.elementor-tab-content li').text())) {
-                    // if city name doesn't contain the value entered, hide it
-                    if (!matcher.test($(this).find('.elementor-tab-title a').text())) {
-                        $(this).hide();
-                    } else {
-                        // if the title (city name) does contain the value, leave it showing and also show all the school names
-                        $(this).find('.elementor-tab-content li').show();
+        let shownCitiesBecauseOfSchools = [];
+
+        $('.elementor-accordion-item').show().each(function () {
+                $(this).find('.elementor-tab-content li').show();
+
+                $(this).find('.elementor-tab-content li a').toArray().some(function (school) {
+                    $(school).text(removeMarkTheSearchedValue($(school).text()));
+                    if ($(school).text().indexOf(self.val()) > -1) {
+                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
+                        shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
                     }
-                }
+                });
+
             }
         );
 
-        /* Then go on with the schools in the shown cities: hide all schools that don't match the value,
-        * but only in the cities that don't match the value.
-        * Because in the cities that do match the value we want to show all schools */
-        shownCities
-            .not(matcher.test($(this).find('.elementor-tab-title a').text()))
-            .find('.elementor-tab-content li').show().not(function () {
-            return matcher.test($(this).text())
-        }).hide();
+        // hide all cities that don't contain the searched value and who don't have a school that contains that value
+        $('.elementor-accordion-item').each(function () {
+            let isItemInShownCities = false;
+            let doesItemCityHaveValue = false;
+            let currAccordionItem = $(this).find('.elementor-tab-title a').text();
 
+
+            $(shownCitiesBecauseOfSchools).each(function () {
+                if (currAccordionItem == $(this).find('.elementor-tab-title a').text()) {
+                    isItemInShownCities = true;
+                    return true;
+                }
+            });
+
+            if (currAccordionItem.indexOf(self.val()) > -1) {
+                doesItemCityHaveValue = true;
+            }
+
+            // if this neither this item's city name nor its schools have the searched value, hide this item
+            if (!isItemInShownCities && !doesItemCityHaveValue) {
+                $(this).hide();
+            }
+
+            // The cities that don't contain the searched value but have schools with the searched value, hide the schools that don't have the searched value
+            // if (isItemInShownCities && !doesItemCityHaveValue) {
+            //     let currSchools = $(this).find('.elementor-tab-content li a');
+            //     console.log(currSchools);
+            //     console.log(1);
+            //
+            //     currSchools.each(function () {
+            //         if ($(this).text().indexOf(self.val()) === -1) {
+            //             $(this).parent().hide();
+            //         }
+            //     });
+            // }
+        });
+    }
+
+    /**
+     * Make the searched value stand out in the schoo name
+     * @param stringToMark
+     * @param startMark
+     * @param markLength
+     * @returns {string}
+     */
+    function markTheSearchedValue(stringToMark, startMark, markLength) {
+        return stringToMark.slice(0, startMark)
+            + '<span class="searched-school-mark">'
+            + stringToMark.slice(startMark, startMark + markLength)
+            + '</span>'
+            + stringToMark.slice(startMark + markLength);
+    }
+
+    /**
+     * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
+     * @param stringToRemoveMark
+     * @returns {string}
+     */
+    function removeMarkTheSearchedValue(stringToRemoveMark) {
+        return stringToRemoveMark.replace('<span class="mark">', '').replace('</span>', '');
     }
 
     /**
@@ -88,6 +152,7 @@ jQuery(document).ready(function ($) {
         // close any open markers and infowindows
         closeClickHandler();
     }
+
 
     /***************************************
      * ********* Google Maps API ********* *
@@ -593,5 +658,58 @@ jQuery(document).ready(function ($) {
             rect.top >= 0 &&
             rect.top <= $(window).height()
         );
+    }
+
+    /* Watch accessibility css change of background color */
+    bodyCssChange();
+
+    /**
+     * taken from here:
+     * https://stackoverflow.com/a/20683311/278
+     */
+    function bodyCssChange() {
+        // Select the node that will be observed for mutations
+        var targetNode = document.getElementById('page');
+        // Options for the observer (which mutations to observe)
+        var config = {
+            attributes: true,
+            attributeFilter: ['style'],
+            characterData: true,
+            childList: false,
+            subtree: false,
+            attributeOldValue: true,
+            characterDataOldValue: true
+        };
+
+        // Callback function to execute when mutations are observed
+        var index = 0;
+        var callback = function (mutationsList) {
+            mutationsList.forEach(function (mutation) {
+                // console.log(mutation);
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    console.log(typeof map !== 'undefined');
+                    $('#map').css({
+                        'background-color': 'transparent'
+                    });
+                    let currElements = $('#map').children();
+                    while (currElements.length > 0) {
+                        currElements.css({
+                            'background-color': 'transparent'
+                        });
+                        currElements = currElements.children();
+                    }
+
+                }
+            });
+        };
+
+        // Create an observer instance linked to the callback function
+        var observer = new MutationObserver(callback);
+
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+
+        // Later, you can stop observing
+        //observer.disconnect();
     }
 });
