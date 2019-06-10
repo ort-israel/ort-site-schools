@@ -40,7 +40,6 @@ jQuery(document).ready(function ($) {
     * They  interchange on scroll */
     window.addEventListener('scroll', windowScrollHandler);
 
-
     /**********************************
      ***** SEARCH SCHOOLS FILTER ******
      **********************************/
@@ -52,20 +51,21 @@ jQuery(document).ready(function ($) {
      */
     function filterSchools(self) {
 
-
-        /* Start with CITY names - find('.elementor-tab-content a') -
-        * find the schools that don't match the searched value,
-        * then Check the city name:
-        * If it doesn't match the searched value hide the whole city.
-        * If the city does match the searched value, leave it showing.
+        /* Start with SCHOOL names - find('.elementor-tab-content a') -
+        * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
         let shownCitiesBecauseOfSchools = [];
 
+        // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
         $('.elementor-accordion-item').show().each(function () {
+                // now show all schools (bese some of them might have been hidden by previous search)
                 $(this).find('.elementor-tab-content li').show();
 
                 $(this).find('.elementor-tab-content li a').toArray().some(function (school) {
                     $(school).text(removeMarkTheSearchedValue($(school).text()));
+                    /* Then look for the searched value. If it exists, do 2 things:
+                    * 1. Mark the search string in the school name
+                    * 2. add the accordion item to the array of items that should be shown */
                     if ($(school).text().indexOf(self.val()) > -1) {
                         $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
                         shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
@@ -75,25 +75,24 @@ jQuery(document).ready(function ($) {
             }
         );
 
-        // hide all cities that don't contain the searched value and who don't have a school that contains that value
+        /* Then Check the city name:
+        * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
         $('.elementor-accordion-item').each(function () {
             let isItemInShownCities = false;
             let doesItemCityHaveValue = false;
-            let currAccordionItem = $(this).find('.elementor-tab-title a').text();
-
-
+            let currCityName = $(this).find('.elementor-tab-title a').text();
             $(shownCitiesBecauseOfSchools).each(function () {
-                if (currAccordionItem == $(this).find('.elementor-tab-title a').text()) {
+                if (currCityName == $(this).find('.elementor-tab-title a').text()) {
                     isItemInShownCities = true;
                     return true;
                 }
             });
 
-            if (currAccordionItem.indexOf(self.val()) > -1) {
+            // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
+            if (currCityName.indexOf(self.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
-
-            // if this neither this item's city name nor its schools have the searched value, hide this item
+            /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
             if (!isItemInShownCities && !doesItemCityHaveValue) {
                 $(this).hide();
             }
@@ -168,7 +167,8 @@ jQuery(document).ready(function ($) {
     updateCitiesFile();
 
     /* Call initMap to initialize the map */
-    initMap();
+
+    //initMap();
 
     /**
      * Initialize the map and all its objects - kmlLayer, infowindow
@@ -224,8 +224,10 @@ jQuery(document).ready(function ($) {
      * Reset the map to the kmlLayer
      */
     function resetMap() {
-        kmlLayer.setMap(map);
-        mapIsReset = true;
+        if (typeof kmlLayer !== 'undefined') {
+            kmlLayer.setMap(map);
+            mapIsReset = true;
+        }
     }
 
     /**
@@ -357,7 +359,8 @@ jQuery(document).ready(function ($) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        let accordionItem = $(this).parent();
+        let accordionItem = self.parent();
+
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
         }
@@ -373,7 +376,7 @@ jQuery(document).ready(function ($) {
                 accordionItem.find('li').show();
             }
             // this is the link that was clicked, and its inner HTML contains the city name
-            let address = $(this).children('a').html();
+            let address = self.children('a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(schools_and_map_filter_ajax_obj.json_file + "?ver=" + Date.now(), function (data) {
