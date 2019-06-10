@@ -50,7 +50,7 @@ class SchoolsAndMaps {
 			wp_localize_script( 'schools_and_map_filter', 'schools_and_map_filter_ajax_obj', array(
 				'json_file' => plugin_dir_url( __FILE__ ) . 'js/cities_map.json',
 				'ajax_url'  => admin_url( 'admin-ajax.php' ),
-				'nonce'     => $title_nonce, // It is common practice to comma after
+				'nonce'     => $title_nonce, 
 				'xmz_file'  => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
 			) );
 		}
