@@ -18,7 +18,6 @@ jQuery(document).ready(function ($) {
     $('.elementor-accordion .elementor-tab-title').on('click', function () {
             if ($('.find-ort').is(":visible")) {
                 $('.find-ort').hide(2000);
-                console.log(1);
                 initMap();
             }
             cityClickedHandler($(this));
@@ -53,7 +52,7 @@ jQuery(document).ready(function ($) {
 
         // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
         $('.elementor-accordion-item').show().each(function () {
-                // now show all schools (because some of them might have been hidden by previous search)
+                // now show all schools (bese some of them might have been hidden by previous search)
                 $(this).find('.elementor-tab-content li').show();
 
                 $(this).find('.elementor-tab-content li a').toArray().some(school => {
@@ -70,7 +69,6 @@ jQuery(document).ready(function ($) {
             }
         );
 
-        // console.log(shownCitiesBecauseOfSchools);
         /* Then Check the city name:
         * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
         $('.elementor-accordion-item').each(function () {
@@ -215,9 +213,9 @@ jQuery(document).ready(function ($) {
     /**
      * Create map and center it in the center of Israel
      */
-    function createMap(lat = 32.61074307932485, long = 36.474776492187516) {
+    function createMap() {
         let mapOptions = {
-            center: new google.maps.LatLng(lat, long),
+            center: new google.maps.LatLng(32.61074307932485, 36.474776492187516),
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
