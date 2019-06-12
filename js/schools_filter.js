@@ -6,21 +6,19 @@ jQuery(document).ready(function ($) {
 
     /* When a user types, or focuses in the text input call the filterSchools function.
     * Can't use arrow function because the this isn't the element which the event happened on */
-    $("#schools_filter_text").on('keyup', function (e) {
-        filterSchools($(this), e);
-    });
+    $("#schools_filter_text").on('keyup', e => filterSchools($(e.target)));
 
-    $("#schools_filter_text").on('focus', function () {
-        schoolsFilterTextFocusHandler($(this));
-    });
+    $("#schools_filter_text").on('focus', e => schoolsFilterTextFocusHandler($(e.target))
+    )
+    ;
 
     /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', function () {
+    $('.elementor-accordion .elementor-tab-title').on('click', e => {
             if ($('.find-ort').is(":visible")) {
                 $('.find-ort').hide(2000);
                 initMap();
             }
-            cityClickedHandler($(this));
+            cityClickedHandler($(e.target));
         }
     );
 
@@ -43,8 +41,7 @@ jQuery(document).ready(function ($) {
      * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
-    function filterSchools(self) {
-
+    function filterSchools(searchField) {
         /* Start with SCHOOL names - find('.elementor-tab-content a') -
         * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
@@ -60,8 +57,8 @@ jQuery(document).ready(function ($) {
                     /* Then look for the searched value. If it exists, do 2 things:
                     * 1. Mark the search string in the school name
                     * 2. add the accordion item to the array of items that should be shown */
-                    if ($(school).text().indexOf(self.val()) > -1) {
-                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
+                    if ($(school).text().indexOf(searchField.val()) > -1) {
+                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
                         shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
                     }
                 });
@@ -83,7 +80,7 @@ jQuery(document).ready(function ($) {
             });
 
             // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
-            if (currCityName.indexOf(self.val()) > -1) {
+            if (currCityName.indexOf(searchField.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
             /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
@@ -338,7 +335,7 @@ jQuery(document).ready(function ($) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        let accordionItem = self.parent();
+        let accordionItem = self.parents('.elementor-accordion-item');
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
@@ -355,7 +352,7 @@ jQuery(document).ready(function ($) {
                 accordionItem.find('li').show();
             }
             // this is the link that was clicked, and its inner HTML contains the city name
-            let address = self.children('a').html();
+            let address = accordionItem.find('.elementor-tab-title a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
