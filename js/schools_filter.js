@@ -6,21 +6,19 @@ jQuery(document).ready(function ($) {
 
     /* When a user types, or focuses in the text input call the filterSchools function.
     * Can't use arrow function because the this isn't the element which the event happened on */
-    $("#schools_filter_text").on('keyup', function (e) {
-        filterSchools($(this), e);
-    });
+    $("#schools_filter_text").on('keyup', e => filterSchools($(e.target)));
 
-    $("#schools_filter_text").on('focus', function () {
-        schoolsFilterTextFocusHandler($(this));
-    });
+    $("#schools_filter_text").on('focus', e => schoolsFilterTextFocusHandler($(e.target))
+    )
+    ;
 
     /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', function () {
+    $('.elementor-accordion .elementor-tab-title').on('click', e => {
             if ($('.find-ort').is(":visible")) {
                 $('.find-ort').hide(2000);
                 initMap();
             }
-            cityClickedHandler($(this));
+            cityClickedHandler($(e.target));
         }
     );
 
@@ -43,8 +41,7 @@ jQuery(document).ready(function ($) {
      * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
-    function filterSchools(self) {
-
+    function filterSchools(searchField) {
         /* Start with SCHOOL names - find('.elementor-tab-content a') -
         * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
@@ -60,8 +57,8 @@ jQuery(document).ready(function ($) {
                     /* Then look for the searched value. If it exists, do 2 things:
                     * 1. Mark the search string in the school name
                     * 2. add the accordion item to the array of items that should be shown */
-                    if ($(school).text().indexOf(self.val()) > -1) {
-                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
+                    if ($(school).text().indexOf(searchField.val()) > -1) {
+                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
                         shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
                     }
                 });
@@ -83,44 +80,14 @@ jQuery(document).ready(function ($) {
             });
 
             // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
-            if (currCityName.indexOf(self.val()) > -1) {
+            if (currCityName.indexOf(searchField.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
             /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
             if (!isItemInShownCities && !doesItemCityHaveValue) {
                 $(this).hide();
             }
-
-            // The cities that don't contain the searched value but have schools with the searched value, hide the schools that don't have the searched value
-            // if (isItemInShownCities && !doesItemCityHaveValue) {
-            //     let currSchools = $(this).find('.elementor-tab-content li a');
-            //     console.log(currSchools);
-            //     console.log(1);
-            //
-            //     currSchools.each(function () {
-            //         if ($(this).text().indexOf(self.val()) === -1) {
-            //             $(this).parent().hide();
-            //         }
-            //     });
-            // }
         });
-
-
-        /* Then go on with the schools in the cities that are shown because they have schools that match the searched value:
-        * hide all schools in that city, that don't match the value */
-        // if (typeof shownCitiesBecauseOfSchools !== 'undefined') {
-        //
-        //     $(shownCitiesBecauseOfSchools).each(function () {
-        //         let currSchools = $(this).find('.elementor-tab-content li a');
-        //
-        //         currSchools.each(function () {
-        //             if (!matcher.test($(this).text())) {
-        //                 $(this).parent().hide();
-        //             }
-        //         });
-        //     });
-        // }
-
     }
 
     /**
@@ -368,7 +335,7 @@ jQuery(document).ready(function ($) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        let accordionItem = self.parent();
+        let accordionItem = self.parents('.elementor-accordion-item');
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
@@ -385,7 +352,7 @@ jQuery(document).ready(function ($) {
                 accordionItem.find('li').show();
             }
             // this is the link that was clicked, and its inner HTML contains the city name
-            let address = self.children('a').html();
+            let address = accordionItem.find('.elementor-tab-title a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
@@ -432,35 +399,40 @@ jQuery(document).ready(function ($) {
      * If the city doesn't exist in the JSON file, we use the geocoder to get its ccordinates info from google, and insert it into the JSON file
      */
     function updateCitiesFile() {
-        $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
-
-            // filter out cities that don't appear in bounds
-            $('.elementor-accordion .elementor-tab-title a').each((key, cityElement) => {
-                // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
-                let cityExists = data.filter(item => item.name.trim() === cityElement.innerHTML.trim());
-                // if the city doesn't appear in bounds, hide it
-                if (cityExists.length === 0) {
-                    // then check if it has a geocode and simply didn't appear in the file
-                    let address = cityElement.innerHTML; // get the name of the current city
-                    /**** prepare the geocode request and send it to the geocode function ****/
-                    var geocodeRequest = {
-                        address: address
-                    };
-                    geocoder = new google.maps.Geocoder();
-                    geocoder.geocode(geocodeRequest, (results, status) => {
-                        if (status === google.maps.GeocoderStatus.OK) {
-                            if (results.length > 0) {
-                                /* Insert the result from the geocode function into the file*/
-                                result = results[0];
-                                insertCityIntoJson(data, address, result);
+        if (schools_and_map_filter_ajax_obj.is_user_admin) {
+            $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
+                let isThereANewCity = false;
+                // filter out cities that don't appear in bounds
+                $('.elementor-accordion .elementor-tab-title a').each((key, cityElement) => {
+                    // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
+                    let cityExists = data.filter(item => item.name.trim() === cityElement.innerHTML.trim());
+                    // if the city doesn't appear in bounds, hide it
+                    if (cityExists.length === 0) {
+                        // then check if it has a geocode and simply didn't appear in the file
+                        let address = cityElement.innerHTML; // get the name of the current city
+                        /**** prepare the geocode request and send it to the geocode function ****/
+                        var geocodeRequest = {
+                            address: address
+                        };
+                        geocoder = new google.maps.Geocoder();
+                        geocoder.geocode(geocodeRequest, (results, status) => {
+                            if (status === google.maps.GeocoderStatus.OK) {
+                                if (results.length > 0) {
+                                    /* Insert the result from the geocode function into the file*/
+                                    result = results[0];
+                                    data = insertCityIntoJson(data, address, result);
+                                    /* must update the file in this loop because it's async, and outside it we don't know if it has finished */
+                                    /* if there is a new city, update the json file */
+                                    updateJsonFile(data);
+                                }
+                            } else {
+                                console.log('Could not gecode: ' + status);
                             }
-                        } else {
-                            console.log('Could not gecode: ' + status);
-                        }
-                    });
-                } // END if (cityExists.length === 0)
-            }); // END $('.elementor-accordion .elementor-tab-title a') iteration
-        }); // END json file iteration
+                        });
+                    } // END if (cityExists.length === 0)
+                }); // END $('.elementor-accordion .elementor-tab-title a') iteration
+            }); // END json file iteration
+        }
     }
 
     /**
@@ -469,6 +441,7 @@ jQuery(document).ready(function ($) {
      * @param cities
      * @param newCityName
      * @param geocodeResult
+     * @returns array - the cities array with the new city
      */
     function insertCityIntoJson(cities, newCityName, geocodeResult) {
         let newCity = {
@@ -480,6 +453,14 @@ jQuery(document).ready(function ($) {
             "northEastViewport": result.geometry.viewport.getNorthEast()
         };
         cities.push(newCity);
+        return cities;
+    }
+
+    /**
+     *
+     * @param cities
+     */
+    function updateJsonFile(cities) {
         let newData = JSON.stringify(cities);
         $.post(
             schools_and_map_filter_ajax_obj.ajax_url,
@@ -495,6 +476,10 @@ jQuery(document).ready(function ($) {
         );
     }
 
+    /**
+     * This is the function that creates our own info window
+     * @param event - has the featureData and latLng fields that are needed to create our window.
+     */
     function openInfoWindow(event) {
         let infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
         let infowindowDescription = "<div class='info_window_content'>";
@@ -509,6 +494,11 @@ jQuery(document).ready(function ($) {
         infowindow.open(map);
     }
 
+    /**
+     * Get the description from the Google window and parse them to display in our window
+     * @param description - has the address and the site url of this school
+     * @returns string - the HTML of the parsed description
+     */
     function getInfowindowFeaturedData(description) {
         let descriptionParts = description.split('<br>');
         let ret = "", schoolAddress, schoolUrl;
@@ -544,6 +534,11 @@ jQuery(document).ready(function ($) {
         return ret;
     }
 
+    /**
+     *
+     * @param firstPartOfDescription
+     * @returns {*|string}
+     */
     function leaveOutUnnecessaryStuff(firstPartOfDescription) {
         let ret = firstPartOfDescription;
         let semicolonPositions = indicesOfSemicolon(firstPartOfDescription);
@@ -585,7 +580,11 @@ jQuery(document).ready(function ($) {
         return indices;
     }
 
-
+    /**
+     *
+     * @param str
+     * @returns {string}
+     */
     function makeTitleBold(str) {
         // the part from the beginning to the colon should be bold
         let indexOfColon = str.indexOf(":");
@@ -693,9 +692,7 @@ jQuery(document).ready(function ($) {
         var index = 0;
         var callback = function (mutationsList) {
             for (var mutation of mutationsList) {
-                // console.log(mutation);
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    console.log(typeof map !== 'undefined');
                     $('#map').css({
                         'background-color': 'transparent'
                     });
@@ -717,7 +714,5 @@ jQuery(document).ready(function ($) {
         // Start observing the target node for configured mutations
         observer.observe(targetNode, config);
 
-        // Later, you can stop observing
-        //observer.disconnect();
     }
 });
