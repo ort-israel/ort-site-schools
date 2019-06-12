@@ -6,19 +6,21 @@ jQuery(document).ready(function ($) {
 
     /* When a user types, or focuses in the text input call the filterSchools function.
     * Can't use arrow function because the this isn't the element which the event happened on */
-    $("#schools_filter_text").on('keyup', e => filterSchools($(e.target)));
+    $("#schools_filter_text").on('keyup', function (e) {
+        filterSchools($(this), e);
+    });
 
-    $("#schools_filter_text").on('focus', e => schoolsFilterTextFocusHandler($(e.target))
-    )
-    ;
+    $("#schools_filter_text").on('focus', function () {
+        schoolsFilterTextFocusHandler($(this));
+    });
 
     /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', e => {
+    $('.elementor-accordion .elementor-tab-title').on('click', function () {
             if ($('.find-ort').is(":visible")) {
                 $('.find-ort').hide(2000);
                 initMap();
             }
-            cityClickedHandler($(e.target));
+            cityClickedHandler($(this));
         }
     );
 
@@ -41,7 +43,8 @@ jQuery(document).ready(function ($) {
      * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
-    function filterSchools(searchField) {
+    function filterSchools(self) {
+
         /* Start with SCHOOL names - find('.elementor-tab-content a') -
         * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
@@ -49,7 +52,7 @@ jQuery(document).ready(function ($) {
 
         // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
         $('.elementor-accordion-item').show().each(function () {
-                // now show all schools (bese some of them might have been hidden by previous search)
+                // now show all schools (because some of them might have been hidden by previous search)
                 $(this).find('.elementor-tab-content li').show();
 
                 $(this).find('.elementor-tab-content li a').toArray().some(school => {
@@ -57,8 +60,8 @@ jQuery(document).ready(function ($) {
                     /* Then look for the searched value. If it exists, do 2 things:
                     * 1. Mark the search string in the school name
                     * 2. add the accordion item to the array of items that should be shown */
-                    if ($(school).text().indexOf(searchField.val()) > -1) {
-                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
+                    if ($(school).text().indexOf(self.val()) > -1) {
+                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
                         shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
                     }
                 });
@@ -80,7 +83,7 @@ jQuery(document).ready(function ($) {
             });
 
             // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
-            if (currCityName.indexOf(searchField.val()) > -1) {
+            if (currCityName.indexOf(self.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
             /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
@@ -180,9 +183,9 @@ jQuery(document).ready(function ($) {
     /**
      * Create map and center it in the center of Israel
      */
-    function createMap() {
+    function createMap(lat = 32.61074307932485, long = 36.474776492187516) {
         let mapOptions = {
-            center: new google.maps.LatLng(32.61074307932485, 36.474776492187516),
+            center: new google.maps.LatLng(lat, long),
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
@@ -335,7 +338,7 @@ jQuery(document).ready(function ($) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        let accordionItem = self.parents('.elementor-accordion-item');
+        let accordionItem = self.parent();
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
@@ -352,7 +355,7 @@ jQuery(document).ready(function ($) {
                 accordionItem.find('li').show();
             }
             // this is the link that was clicked, and its inner HTML contains the city name
-            let address = accordionItem.find('.elementor-tab-title a').html();
+            let address = self.children('a').html();
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {

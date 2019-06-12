@@ -17,8 +17,7 @@ class SchoolsAndMaps {
 		/* Schools page actions and shortcode - Begin */
 		add_shortcode( 'schools_filter', [ $this, 'schools_filter_shortcode' ] );
 		add_action( 'schools_map_locations_update', [ $this, 'schools_map_locations_update' ] );
-		add_action( 'wp_ajax_schools_map_locations_update', [ $this, 'schools_map_locations_update' ] );
-		add_action( 'wp_ajax_nopriv_schools_map_locations_update', [ $this, 'schools_map_locations_update' ] );
+		add_action( 'wp_ajax_schools_map_locations_update', [ $this, 'schools_map_locations_update' ] ); // only run the ajax for users of type admin
 		/* Schools page actions and shortcode - End */
 	}
 
@@ -47,11 +46,13 @@ class SchoolsAndMaps {
 
 			// the page needs ajax in order to write to the citites json file
 			$title_nonce = wp_create_nonce( 'title_example' );
+			$user        = wp_get_current_user(); // send the user's role to javascript. Only if it's an administrator shoul the geocode api be used. This is to prevent abuse of geocode api
 			wp_localize_script( 'schools_and_map_filter', 'schools_and_map_filter_ajax_obj', array(
-				'json_file' => plugin_dir_url( __FILE__ ) . 'js/cities_map.json',
-				'ajax_url'  => admin_url( 'admin-ajax.php' ),
-				'nonce'     => $title_nonce, 
-				'xmz_file'  => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
+				'json_file'     => plugin_dir_url( __FILE__ ) . 'js/cities_map.json',
+				'ajax_url'      => admin_url( 'admin-ajax.php' ),
+				'nonce'         => $title_nonce,
+				'is_user_admin' => in_array( 'administrator', $user->roles ),
+				'xmz_file'      => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
 			) );
 		}
 	}
@@ -76,6 +77,7 @@ class SchoolsAndMaps {
 
 	/**
 	 * This function is called via ajax, and updates the JSON file
+	 * It's only called for admins, because we don't ant every user to be able to update the file
 	 */
 	public function schools_map_locations_update() {
 		check_ajax_referer( 'title_example' );
