@@ -710,6 +710,9 @@ jQuery(document).ready(function ($) {
                         'background-color': 'transparent'
                     });
                     let currElements = mapElement.children();
+                    map.css({
+                        'background-color': 'transparent'
+                    });
                     while (currElements.length > 0) {
                         currElements.css({
                             'background-color': 'transparent'
