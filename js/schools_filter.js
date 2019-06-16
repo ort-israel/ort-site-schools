@@ -1,35 +1,39 @@
 jQuery(document).ready(function ($) {
 
     /**********************************
+     ************* VARIABLES **********
+     **********************************/
+    let fieldSearchSchools = $('#schools_filter_text');
+    let cityNameElements = $('.elementor-accordion .elementor-tab-title');
+    let cityNameLinkElements = $('.elementor-accordion .elementor-tab-title a');
+    let mapStaticImage = $('.find-ort');
+    let btnEnableMap = $('.elementor-button');
+    let mapElement = $('#map');
+
+    /**********************************
      ************* EVENTS *************
      **********************************/
 
-    /* When a user types, or focuses in the text input call the filterSchools function.
-    * Can't use arrow function because the this isn't the element which the event happened on */
-    $("#schools_filter_text").on('keyup', e => filterSchools($(e.target)));
+    /* When a user types, or focuses in the text input call the filterSchools function. */
 
-    $("#schools_filter_text").on('focus', e => schoolsFilterTextFocusHandler($(e.target))
-    )
-    ;
+    fieldSearchSchools.on('keyup', e => filterSchools($(e.target)));
 
-    /* When a city name is clicked call the cityClickedHandler function */
-    $('.elementor-accordion .elementor-tab-title').on('click', e => {
-            if ($('.find-ort').is(":visible")) {
-                $('.find-ort').hide(2000);
+    fieldSearchSchools.on('focus', e => schoolsFilterTextFocusHandler($(e.target)));
+
+    cityNameElements.on('click', e => {
+            if (mapStaticImage.is(":visible")) {
+                mapStaticImage.hide(2000);
                 initMap();
             }
             cityClickedHandler($(e.target));
         }
     );
 
-    /* When the button on the map image is clicked, initialize the map */
-    $('.elementor-button').on('click', () => {
-        $('.find-ort').hide(2000);
+    btnEnableMap.on('click', () => {
+        mapStaticImage.hide(2000);
         initMap();
     });
 
-    /* There is a button to jump from the city list to the map, and a button to kump back.
-    * They  interchange on scroll */
     window.addEventListener('scroll', windowScrollHandler);
 
     /**********************************
@@ -46,13 +50,16 @@ jQuery(document).ready(function ($) {
         * find the schools that match the searched value.
         * Start with showing all, for cases when the search changed completely */
         let shownCitiesBecauseOfSchools = [];
+        let elementorAccordionItems = $('.elementor-accordion-item');
 
         // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
-        $('.elementor-accordion-item').show().each(function () {
+        elementorAccordionItems.show().each(function () {
+                let currentCitySchools = $(this).find('.elementor-tab-content li');
                 // now show all schools (because some of them might have been hidden by previous search)
-                $(this).find('.elementor-tab-content li').show();
+                currentCitySchools.show();
 
-                $(this).find('.elementor-tab-content li a').toArray().some(school => {
+                currentCitySchools.toArray().some(school => {
+
                     $(school).text(removeMarkTheSearchedValue($(school).text()));
                     /* Then look for the searched value. If it exists, do 2 things:
                     * 1. Mark the search string in the school name
@@ -68,12 +75,13 @@ jQuery(document).ready(function ($) {
 
         /* Then Check the city name:
         * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
-        $('.elementor-accordion-item').each(function () {
+        elementorAccordionItems.each(function () {
             let isItemInShownCities = false;
             let doesItemCityHaveValue = false;
             let currCityName = $(this).find('.elementor-tab-title a').text();
             $(shownCitiesBecauseOfSchools).each(function () {
-                if (currCityName == $(this).find('.elementor-tab-title a').text()) {
+                let currShownCityName = $(this).find('.elementor-tab-title a').text();
+                if (currCityName === currShownCityName) {
                     isItemInShownCities = true;
                     return true;
                 }
@@ -119,7 +127,7 @@ jQuery(document).ready(function ($) {
      * 1. The map should go back to initial state
      * 2. The cities and schools should be filtered acoording to whatever input is in the text box
      * 3. Any markers showing on the map should be closed
-     * @param self - $("#schools_filter_text")
+     * @param self - $('#schools_filter_text')
      */
     function schoolsFilterTextFocusHandler(self) {
         // return map to original bounds and size
@@ -232,7 +240,7 @@ jQuery(document).ready(function ($) {
         /* Sometimes the kml layer comes late and the bounds change while the user is filtering.
         * Since the bounds chage affect the city list and so does the filtering, we should make sure
         * the application of the changed bounds shouldn't happen if the user is in the middle of filtering. */
-        if (!$("#schools_filter_text").is(':focus')) {
+        if (!fieldSearchSchools.is(':focus')) {
             // get new bounds
             let mapBounds = map.getBounds();
             if (mapBounds !== null) {
@@ -240,20 +248,21 @@ jQuery(document).ready(function ($) {
                     let res = getCitiesinMap(data, mapBounds);
 
                     // filter out cities that don't appear in bounds
-                    $('.elementor-accordion .elementor-tab-title a').each((key, value) => {
+                    cityNameLinkElements.each((key, value) => {
+                        let elementorAccordionItem = $(value).parents('.elementor-accordion-item');
                         // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
                         let cityExists = res.filter(item => item.name.trim() === value.innerHTML.trim());
                         // if the city doesn't appear in bounds, hide it
                         if (cityExists.length === 0) {
                             // hide it
-                            $(value).parents('.elementor-accordion-item').hide();
+                            elementorAccordionItem.hide();
                         }
                         // if the city appears - make it show (needed on zoom out, to return the cities previously hidden)
                         else {
-                            /* The value is the ('.elementor-accordion .elementor-tab-title a')
+                            /* The value is the cityNameLinkElement
                             * if the city exists, turn on its parent and its siblings which are the schools */
-                            $(value).parents('.elementor-accordion-item').show();
-                            $(value).parents('.elementor-accordion-item').find('.elementor-tab-content a').show();
+                            elementorAccordionItem.show();
+                            elementorAccordionItem.find('.elementor-tab-content a').show();
                         }
                     });
                 });
@@ -403,7 +412,7 @@ jQuery(document).ready(function ($) {
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
                 let isThereANewCity = false;
                 // filter out cities that don't appear in bounds
-                $('.elementor-accordion .elementor-tab-title a').each((key, cityElement) => {
+                cityNameLinkElements.each((key, cityElement) => {
                     // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
                     let cityExists = data.filter(item => item.name.trim() === cityElement.innerHTML.trim());
                     // if the city doesn't appear in bounds, hide it
@@ -430,7 +439,7 @@ jQuery(document).ready(function ($) {
                             }
                         });
                     } // END if (cityExists.length === 0)
-                }); // END $('.elementor-accordion .elementor-tab-title a') iteration
+                }); // END cityNameLinkElementsiteration
             }); // END json file iteration
         }
     }
@@ -631,17 +640,21 @@ jQuery(document).ready(function ($) {
      ***************************************/
 
     /**
+     * There is a button to jump from the city list to the map, and a button to jump back.
+     * They  interchange on scroll:
      * When the list is in view show the button to the map,
      * and when the map is in view show the button to the list
      */
     function windowScrollHandler() {
-        if (isElementInViewport($('#map'))) {
+        let linkToMap = $('.link_to_map');
+        let linkToList = $('.link_to_list');
+        if (isElementInViewport(mapElement)) {
             // when map is in view, hide the map button
-            $('.link_to_map').hide();
-            $('.link_to_list').show();
+            linkToMap.hide();
+            linkToList.show();
         } else {
-            $('.link_to_map').show();
-            $('.link_to_list').hide();
+            linkToMap.show();
+            linkToList.hide();
         }
     }
 
@@ -693,10 +706,10 @@ jQuery(document).ready(function ($) {
         var callback = function (mutationsList) {
             for (var mutation of mutationsList) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    $('#map').css({
+                    mapElement.css({
                         'background-color': 'transparent'
                     });
-                    let currElements = $('#map').children();
+                    let currElements = mapElement.children();
                     while (currElements.length > 0) {
                         currElements.css({
                             'background-color': 'transparent'
