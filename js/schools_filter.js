@@ -21,13 +21,12 @@ jQuery(document).ready(function ($) {
     fieldSearchSchools.on('focus', e => schoolsFilterTextFocusHandler($(e.target)));
 
     cityNameElements.on('click', e => {
-            if (mapStaticImage.is(":visible")) {
-                mapStaticImage.hide(2000);
-                initMap();
-            }
-            cityClickedHandler($(e.target));
+        if (mapStaticImage.is(":visible")) {
+            mapStaticImage.hide(2000);
+            initMap();
         }
-    );
+        cityClickedHandler($(e.target));
+    });
 
     btnEnableMap.on('click', () => {
         mapStaticImage.hide(2000);
@@ -54,24 +53,23 @@ jQuery(document).ready(function ($) {
 
         // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
         elementorAccordionItems.show().each(function () {
-                let currentCitySchools = $(this).find('.elementor-tab-content li');
-                // now show all schools (because some of them might have been hidden by previous search)
-                currentCitySchools.show();
+            let currentCitySchools = $(this).find('.elementor-tab-content li');
+            // now show all schools (because some of them might have been hidden by previous search)
+            currentCitySchools.show();
 
-                currentCitySchools.toArray().some(school => {
+            currentCitySchools.toArray().some(school => {
 
-                    $(school).text(removeMarkTheSearchedValue($(school).text()));
-                    /* Then look for the searched value. If it exists, do 2 things:
-                    * 1. Mark the search string in the school name
-                    * 2. add the accordion item to the array of items that should be shown */
-                    if ($(school).text().indexOf(searchField.val()) > -1) {
-                        $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
-                        shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
-                    }
-                });
+                $(school).text(removeMarkTheSearchedValue($(school).text()));
+                /* Then look for the searched value. If it exists, do 2 things:
+                * 1. Mark the search string in the school name
+                * 2. add the accordion item to the array of items that should be shown */
+                if ($(school).text().indexOf(searchField.val()) > -1) {
+                    $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
+                    shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
+                }
+            });
 
-            }
-        );
+        });
 
         /* Then Check the city name:
         * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
@@ -365,14 +363,13 @@ jQuery(document).ready(function ($) {
             // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
-                    // check if the current clicked city is in the file
-                    let res = data.filter(item => item.name === address);
-                    // if it's in the file, sync the map to zoom in on that city
-                    if (res.length > 0) {
-                        applyCityClickToMap(res[0]);
-                    }
+                // check if the current clicked city is in the file
+                let res = data.filter(item => item.name === address);
+                // if it's in the file, sync the map to zoom in on that city
+                if (res.length > 0) {
+                    applyCityClickToMap(res[0]);
                 }
-            );
+            });
         } else {
             // when the city is clicked closed, resume the original bounds and zoom
             resetMap();
@@ -481,8 +478,7 @@ jQuery(document).ready(function ($) {
             },
             function (data) {
                 //nothing to do with data
-            }
-        );
+            });
     }
 
     /**
