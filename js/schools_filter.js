@@ -493,15 +493,17 @@ jQuery(document).ready(function ($) {
     function openInfoWindow(event) {
         let infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
         let infowindowDescription = "<div class='info_window_content'>";
-        infowindowDescription += getInfowindowFeaturedData(event.featureData.description);
-        infowindowDescription += "</div>"; // + event.featureData.description +
-        infowindow.setContent(infowindowTitle + infowindowDescription);
-        infowindow.setPosition(event.latLng); // even though we set the pixelOffset in the constructor, we also have to set the position.
-        /* this is the only way I found to hide the original infowindow because suppressInfoWindows doesn't work and neither does showInfoWindowOnClick.
-        Got the idea from here: https://stackoverflow.com/a/22083454/278
-        maybe try baloonstyle: https://stackoverflow.com/questions/32557103/kml-file-is-there-a-way-to-completely-disable-description-bubbles*/
-        event.featureData.infoWindowHtml = "";
-        infowindow.open(map);
+        if (event.featureData.status === "OK") {
+            infowindowDescription += getInfowindowFeaturedData(event.featureData.description);
+            infowindowDescription += "</div>"; // + event.featureData.description +
+            infowindow.setContent(infowindowTitle + infowindowDescription);
+            infowindow.setPosition(event.latLng); // even though we set the pixelOffset in the constructor, we also have to set the position.
+            /* this is the only way I found to hide the original infowindow because suppressInfoWindows doesn't work and neither does showInfoWindowOnClick.
+            Got the idea from here: https://stackoverflow.com/a/22083454/278
+            maybe try baloonstyle: https://stackoverflow.com/questions/32557103/kml-file-is-there-a-way-to-completely-disable-description-bubbles*/
+            event.featureData.infoWindowHtml = "";
+            infowindow.open(map);
+        }
     }
 
     /**
