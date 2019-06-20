@@ -629,13 +629,15 @@ jQuery(document).ready(function ($) {
     function windowScrollHandler() {
         let linkToMap = $('.link_to_map');
         let linkToList = $('.link_to_list');
-        if (isElementInViewport(mapElement)) {
-            // when map is in view, hide the map button
-            linkToMap.hide();
-            linkToList.show();
-        } else {
-            linkToMap.show();
-            linkToList.hide();
+        if (linkToMap.is(':visible') || linkToList.is(':visible')) {
+            if (isElementInViewport(mapElement)) {
+                // when map is in view, hide the map button
+                linkToMap.hide();
+                linkToList.show();
+            } else {
+                linkToMap.show();
+                linkToList.hide();
+            }
         }
     }
 
@@ -658,6 +660,9 @@ jQuery(document).ready(function ($) {
         return (
             rect.top >= 0 &&
             rect.top <= $(window).height()
+            ||
+            rect.bottom >= 0 &&
+            rect.bottom <= $(window).height()
         );
     }
 
