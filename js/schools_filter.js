@@ -59,14 +59,14 @@ jQuery(document).ready(function ($) {
             currentCitySchools.show();
 
             currentCitySchools.toArray().some(school => {
+                let currSchool = $(school);
+                let searchValue = searchField.val();
 
-                $(school).text(removeMarkTheSearchedValue($(school).text()));
-                /* Then look for the searched value. If it exists, do 2 things:
-                * 1. Mark the search string in the school name
-                * 2. add the accordion item to the array of items that should be shown */
-                if ($(school).text().indexOf(searchField.val()) > -1) {
-                    $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(searchField.val()), searchField.val().length));
-                    shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
+                currSchool.html(removeMarkTheSearchedValue(currSchool));
+
+                if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
+                    currSchool.html(markTheSearchedValue(currSchool.html(), currSchool.html().indexOf(searchValue), searchValue.length));
+                    shownCitiesBecauseOfSchools.push(currSchool.parents('.elementor-accordion-item'));
                 }
             });
 
@@ -77,9 +77,9 @@ jQuery(document).ready(function ($) {
         elementorAccordionItems.each(function () {
             let isItemInShownCities = false;
             let doesItemCityHaveValue = false;
-            let currCityName = $(this).find('.elementor-tab-title a').text();
+            let currCityName = $(this).find('.elementor-tab-title a').html();
             $(shownCitiesBecauseOfSchools).each(function () {
-                let currShownCityName = $(this).find('.elementor-tab-title a').text();
+                let currShownCityName = $(this).find('.elementor-tab-title a').html();
                 if (currCityName === currShownCityName) {
                     isItemInShownCities = true;
                     return true;
@@ -118,7 +118,11 @@ jQuery(document).ready(function ($) {
      * @returns {string}
      */
     function removeMarkTheSearchedValue(stringToRemoveMark) {
-        return stringToRemoveMark.replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
+        let ret = stringToRemoveMark.html();
+        if (stringToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
+            ret = stringToRemoveMark.html().replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
+        }
+        return ret;
     }
 
     /**
