@@ -204,7 +204,7 @@ jQuery(document).ready(function ($) {
      */
     function addKmlLayer() {
         kmlLayer = new google.maps.KmlLayer({
-            url: `${schools_and_map_filter_ajax_obj.xmz_file}`
+            url: `${schools_and_map_filter_ajax_obj.kmz_file}`
         });
         resetMap();
     }

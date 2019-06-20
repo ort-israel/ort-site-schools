@@ -17,7 +17,10 @@ class SchoolsAndMaps {
 		/* Schools page actions and shortcode - Begin */
 		add_shortcode( 'schools_filter', [ $this, 'schools_filter_shortcode' ] );
 		add_action( 'schools_map_locations_update', [ $this, 'schools_map_locations_update' ] );
-		add_action( 'wp_ajax_schools_map_locations_update', [ $this, 'schools_map_locations_update' ] ); // only run the ajax for users of type admin
+		add_action( 'wp_ajax_schools_map_locations_update', [
+			$this,
+			'schools_map_locations_update'
+		] ); // only run the ajax for users of type admin
 		/* Schools page actions and shortcode - End */
 	}
 
@@ -52,7 +55,7 @@ class SchoolsAndMaps {
 				'ajax_url'             => admin_url( 'admin-ajax.php' ),
 				'nonce'                => $title_nonce,
 				'is_user_admin'        => in_array( 'administrator', $user->roles ),
-				'xmz_file'             => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
+				'kmz_file'             => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
 				'strSchoolAddress'     => __( 'school address:', 'schools-and-maps' ),
 				'strSchoolUrl'         => __( 'school url:', 'schools-and-maps' ),
 				'strMarkerDescription' => __( 'marker descirption:', 'schools-and-maps' ),
