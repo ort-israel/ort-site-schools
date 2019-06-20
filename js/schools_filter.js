@@ -506,58 +506,55 @@ jQuery(document).ready(function ($) {
         }
     }
 
+
+    /**
+     * Extract from the array of info the address of the school,
+     * by searching for the part that has the string כתובת: or אתר בית ספר or any other string that might indicate our desired info
+     * @param descriptionParts - the array of info from the info window
+     * @param searchString - the string that might indicate our desired info
+     * @param label - the label of the current field. We want to get rid of it
+     * @returns {string} - the school addresses, without any other words
+     */
+    function getInfoFromInfowindow(descriptionParts, searchString, label) {
+        let ret = "";
+        let infoArr = descriptionParts.filter(item => item.indexOf(searchString) > -1);
+        if (infoArr.length > 0) {
+            for (var infoData of infoArr) {
+                let tmp = decodeURI(encodeURI(infoData)
+                    .replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
+                    .replace(label, "")
+                    .replace(schools_and_map_filter_ajax_obj.strMarkerDescription, "")
+                    .replace(/target="_blank"/g, "")
+                    .trim();
+                if (ret.indexOf(tmp) === -1) {
+                    if (ret !== "") {
+                        ret += ", ";
+                    }
+                    ret += tmp;
+                }
+            }
+        }
+        return ret;
+    }
+
     /**
      * Get the description from the Google window and parse them to display in our window
      * @param description - has the address and the site url of this school
      * @returns string - the HTML of the parsed description
      */
     function getInfowindowFeaturedData(description) {
-        let descriptionParts = description.split('<br>');
         let ret = "", schoolAddress, schoolUrl;
-        if (descriptionParts.length === 4) {
-            /* the string has 4 parts, where the first 2 are a lesser duplications of the 2 latter ones.
-             * In the 2 latter ones:
-             * descriptionParts[2] is the school address,
-             * descriptionParts[3] is the school url
-             * make the term title bold:
-             * */
-            schoolAddress = descriptionParts[2];
-            schoolUrl = descriptionParts[3];
-        } else if (descriptionParts.length) {
-            /* Ths string only has the description. We'll work with that */
-            schoolAddress = leaveOutUnnecessaryStuff(descriptionParts[0]);
-            schoolUrl = descriptionParts[1];
-        }
+        let descriptionParts = description.split('<br>');
+        if (descriptionParts.length > 0) {
+            schoolAddress = getInfoFromInfowindow(descriptionParts, schools_and_map_filter_ajax_obj.strSchoolAddress, schools_and_map_filter_ajax_obj.strSchoolAddress);
+            schoolUrl = getInfoFromInfowindow(descriptionParts, '<a', schools_and_map_filter_ajax_obj.strSchoolUrl);
 
-        /* Only if there is an actual address and not only the title, display it in HTML */
-        if (schoolAddress.indexOf(":") < schoolAddress.length - 1) {
-            schoolAddress = removeTrailingSlashFromURL(schoolAddress);
-            ret += "<div>" + makeTitleBold(schoolAddress) + "</div>";
-        }
+            ret += wrapInHTML(schools_and_map_filter_ajax_obj.strSchoolAddress, schoolAddress);
+            if (schoolUrl !== "") {
+                schoolUrl = removeTrailingSlashFromURL(schoolUrl);
+                ret += wrapInHTML(schools_and_map_filter_ajax_obj.strSchoolUrl, schoolUrl);
+            }
 
-        /* Only if there is an actual address and not only the title, display it in HTML */
-        if (schoolUrl.indexOf(":") < schoolUrl.length - 1) {
-            // remove trailing slash from site url
-            schoolUrl = removeTrailingSlashFromURL(schoolUrl);
-
-            ret += "<div>" + makeTitleBold(schoolUrl) + "</div>";
-        }
-
-        return ret;
-    }
-
-    /**
-     *
-     * @param firstPartOfDescription
-     * @returns {*|string}
-     */
-    function leaveOutUnnecessaryStuff(firstPartOfDescription) {
-        let ret = firstPartOfDescription;
-        let semicolonPositions = indicesOfSemicolon(firstPartOfDescription);
-        if (semicolonPositions.length > 1) {
-            // return the string from after the one before last semicolon
-            let startStrFrom = semicolonPositions[semicolonPositions.length - 2] + 1;
-            ret = firstPartOfDescription.substring(startStrFrom).trim();
         }
         return ret;
     }
@@ -568,39 +565,20 @@ jQuery(document).ready(function ($) {
      * @returns the schoolUrl without trailing slash
      */
     function removeTrailingSlashFromURL(schoolUrl) {
-        const trailingSlash = "/</a>";
-        const withoutTrailingSlash = "</a>";
         return schoolUrl
-            .replace(trailingSlash, withoutTrailingSlash)
-            .replace("<a ", "<a class='info_window_school_link'");
+            .replace(/\/<\/a>/g, "</a>")
+            .replace(/<a /g, "<a class='info_window_school_link'");
     }
 
-    /**
-     * Finds all occurrences of a semicolon in a string.
-     * Skips any semicolon that is part of a url
-     * @param str - the string to look in
-     * @returns {Array} - array of semicolon positions
-     */
-    function indicesOfSemicolon(str) {
-        let regex = /:/gi, result, indices = [];
-        while ((result = regex.exec(str))) {
-            // make sure this isn't the semicolon from http://:
-            if (str.substring(result.index - 5, result.index - 1) !== 'http') {
-                indices.push(result.index);
-            }
-        }
-        return indices;
-    }
 
     /**
-     *
+     * Wrap the strng with a div, and add the title wrapped in a span with class.
+     * @param title
      * @param str
-     * @returns {string}
+     * @returns {string} - str + title in HTML tags
      */
-    function makeTitleBold(str) {
-        // the part from the beginning to the colon should be bold
-        let indexOfColon = str.indexOf(":");
-        str = "<span class='info_window_term'>" + str.substr(0, indexOfColon + 1) + "</span>" + str.substr(indexOfColon + 1);
+    function wrapInHTML(title, str) {
+        str = "<div>" + "<span class='info_window_term'>" + title + "</span> " + str + "</div>";
         return str;
     }
 

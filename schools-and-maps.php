@@ -48,11 +48,14 @@ class SchoolsAndMaps {
 			$title_nonce = wp_create_nonce( 'title_example' );
 			$user        = wp_get_current_user(); // send the user's role to javascript. Only if it's an administrator shoul the geocode api be used. This is to prevent abuse of geocode api
 			wp_localize_script( 'schools_and_map_filter', 'schools_and_map_filter_ajax_obj', array(
-				'json_file'     => plugin_dir_url( __FILE__ ) . 'js/cities_map.json',
-				'ajax_url'      => admin_url( 'admin-ajax.php' ),
-				'nonce'         => $title_nonce,
-				'is_user_admin' => in_array( 'administrator', $user->roles ),
-				'xmz_file'      => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
+				'json_file'            => plugin_dir_url( __FILE__ ) . 'js/cities_map.json',
+				'ajax_url'             => admin_url( 'admin-ajax.php' ),
+				'nonce'                => $title_nonce,
+				'is_user_admin'        => in_array( 'administrator', $user->roles ),
+				'xmz_file'             => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
+				'strSchoolAddress'     => __( 'school address:', 'schools-and-maps' ),
+				'strSchoolUrl'         => __( 'school url:', 'schools-and-maps' ),
+				'strMarkerDescription' => __( 'marker descirption:', 'schools-and-maps' ),
 			) );
 		}
 	}
