@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
     let mapStaticImage = $('.find-ort');
     let btnEnableMap = $('.elementor-button');
     let mapElement = $('#map');
+    let clsSearhedSchooMark = "searched-school-mark";
 
     /**********************************
      ************* EVENTS *************
@@ -105,7 +106,7 @@ jQuery(document).ready(function ($) {
      */
     function markTheSearchedValue(stringToMark, startMark, markLength) {
         return stringToMark.slice(0, startMark)
-            + '<span class="searched-school-mark">'
+            + '<span class="' + clsSearhedSchooMark + '">'
             + stringToMark.slice(startMark, startMark + markLength)
             + '</span>'
             + stringToMark.slice(startMark + markLength);
@@ -117,7 +118,7 @@ jQuery(document).ready(function ($) {
      * @returns {string}
      */
     function removeMarkTheSearchedValue(stringToRemoveMark) {
-        return stringToRemoveMark.replace('<span class="mark">', '').replace('</span>', '');
+        return stringToRemoveMark.replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
     }
 
     /**
