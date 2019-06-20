@@ -688,7 +688,6 @@ jQuery(document).ready(function ($) {
         };
 
         // Callback function to execute when mutations are observed
-        var index = 0;
         var callback = function (mutationsList) {
             for (var mutation of mutationsList) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
@@ -696,9 +695,10 @@ jQuery(document).ready(function ($) {
                         'background-color': 'transparent'
                     });
                     let currElements = mapElement.children();
-                    map.css({
+                    mapElement.css({
                         'background-color': 'transparent'
                     });
+
                     while (currElements.length > 0) {
                         currElements.css({
                             'background-color': 'transparent'
