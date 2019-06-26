@@ -1,40 +1,65 @@
 "use strict";
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) {
+    if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+        return right[Symbol.hasInstance](left);
+    } else {
+        return left instanceof right;
+    }
+}
 
 jQuery(document).ready(function ($) {
+    /**********************************
+     ************* VARIABLES **********
+     **********************************/
+    var fieldSearchSchools = $('#schools_filter_text');
+    var cityNameElements = $('.elementor-accordion .elementor-tab-title');
+    var cityNameLinkElements = $('.elementor-accordion .elementor-tab-title a');
+    var mapStaticImage = $('.find-ort');
+    var btnEnableMap = $('.elementor-button');
+    var mapElement = $('#map');
+    var clsSearhedSchooMark = "searched-school-mark";
+    var mediumSpeed = 2000;
+    var highSpeed = 100;
+    var map, geocoder, kmlLayer, infowindow, marker;
+    var mapIsReset = true;
+    var infoWindowWrapperClass = 'info_window_wrapper';
+    var elementToWatchForAccessibility = "page";
     /**********************************
      ************* EVENTS *************
      **********************************/
 
-    /* When a user types, or focuses in the text input call the filterSchools function.
-    * Can't use arrow function because the this isn't the element which the event happened on */
-    $("#schools_filter_text").on('keyup', function (e) {
-        filterSchools($(this), e);
-    });
-    $("#schools_filter_text").on('focus', function () {
-        schoolsFilterTextFocusHandler($(this));
-    });
-    /* When a city name is clicked call the cityClickedHandler function */
+    /* When a user types, or focuses in the text input call the filterSchools function. */
 
-    $('.elementor-accordion .elementor-tab-title').on('click', function () {
-        if ($('.find-ort').is(":visible")) {
-            $('.find-ort').hide(2000);
+    fieldSearchSchools.on('keyup', function (e) {
+        return filterSchools($(e.target));
+    });
+    fieldSearchSchools.on('focus', function (e) {
+        return schoolsFilterTextFocusHandler($(e.target));
+    });
+    cityNameElements.on('click', function (e) {
+        if (mapStaticImage.is(":visible")) {
+            mapStaticImage.hide(mediumSpeed);
             initMap();
         }
 
-        cityClickedHandler($(this));
+        cityClickedHandler($(e.target));
     });
-    /* When the button on the map image is clicked, initialize the map */
-
-    $('.elementor-button').on('click', function () {
-        $('.find-ort').hide(2000);
+    btnEnableMap.on('click', function () {
+        mapStaticImage.hide(mediumSpeed);
         initMap();
     });
-    /* There is a button to jump from the city list to the map, and a button to kump back.
-    * They  interchange on scroll */
-
     window.addEventListener('scroll', windowScrollHandler);
+    /* Watch accessibility css change of background color */
+
+    bodyCssChange();
+    /**
+     * Needs to called before the map is created,
+     * so any new cities are inserted into the json file and are shown in the list
+     */
+
+    updateCitiesFile();
+
     /**********************************
      ***** SEARCH SCHOOLS FILTER ******
      **********************************/
@@ -45,64 +70,48 @@ jQuery(document).ready(function ($) {
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
 
-    function filterSchools(self) {
-        /* Start with SCHOOL names - find('.elementor-tab-content a') -
-        * find the schools that match the searched value.
-        * Start with showing all, for cases when the search changed completely */
-        var shownCitiesBecauseOfSchools = []; // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
+    function filterSchools(searchField) {
+        var citiesToShow = [];
+        var elementorAccordionItems = $('.elementor-accordion-item'); // First show all accordion items because some of them might have been hidden by previous search.
 
-        $('.elementor-accordion-item').show().each(function () {
-            // now show all schools (bese some of them might have been hidden by previous search)
-            $(this).find('.elementor-tab-content li').show();
-            $(this).find('.elementor-tab-content li a').toArray().some(function (school) {
-                $(school).text(removeMarkTheSearchedValue($(school).text()));
-                /* Then look for the searched value. If it exists, do 2 things:
-                * 1. Mark the search string in the school name
-                * 2. add the accordion item to the array of items that should be shown */
+        elementorAccordionItems.show().each(function () {
+            var currentCitySchools = $(this).find('.elementor-tab-content li'); // now show all schools (because some of them might have been hidden by previous search)
 
-                if ($(school).text().indexOf(self.val()) > -1) {
-                    $(school).html(markTheSearchedValue($(school).text(), $(school).text().indexOf(self.val()), self.val().length));
-                    shownCitiesBecauseOfSchools.push($(school).parents('.elementor-accordion-item'));
+            currentCitySchools.show();
+            currentCitySchools.toArray().some(function (school) {
+                var currSchool = $(school);
+                var searchValue = searchField.val();
+                currSchool.html(removeMarkTheSearchedValue(currSchool));
+
+                if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
+                    currSchool.html(markTheSearchedValue(currSchool.html(), currSchool.html().indexOf(searchValue), searchValue.length));
+                    citiesToShow.push(currSchool.parents('.elementor-accordion-item'));
                 }
             });
         });
-        /* Then Check the city name:
-        * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
-
-        $('.elementor-accordion-item').each(function () {
-            var isItemInShownCities = false;
+        elementorAccordionItems.each(function () {
+            var isItemInCitiesToShow = false;
             var doesItemCityHaveValue = false;
-            var currCityName = $(this).find('.elementor-tab-title a').text();
-            $(shownCitiesBecauseOfSchools).each(function () {
-                if (currCityName == $(this).find('.elementor-tab-title a').text()) {
-                    isItemInShownCities = true;
+            var currCityName = $(this).find('.elementor-tab-title a').html();
+            $(citiesToShow).each(function () {
+                var currShownCityName = $(this).find('.elementor-tab-title a').html();
+
+                if (currCityName === currShownCityName) {
+                    isItemInCitiesToShow = true;
                     return true;
                 }
             }); // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
 
-            if (currCityName.indexOf(self.val()) > -1) {
+            if (currCityName.indexOf(searchField.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
-            /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
-
-
-            if (!isItemInShownCities && !doesItemCityHaveValue) {
+            /* Hide all accordion items whose cities don't contain the searched value and who don't have a school that contains that value*/
+            if (!isItemInCitiesToShow && !doesItemCityHaveValue) {
                 $(this).hide();
-            } // The cities that don't contain the searched value but have schools with the searched value, hide the schools that don't have the searched value
-            // if (isItemInShownCities && !doesItemCityHaveValue) {
-            //     let currSchools = $(this).find('.elementor-tab-content li a');
-            //     console.log(currSchools);
-            //     console.log(1);
-            //
-            //     currSchools.each(function () {
-            //         if ($(this).text().indexOf(self.val()) === -1) {
-            //             $(this).parent().hide();
-            //         }
-            //     });
-            // }
-
+            }
         });
     }
+
     /**
      * Make the searched value stand out in the schoo name
      * @param stringToMark
@@ -113,8 +122,9 @@ jQuery(document).ready(function ($) {
 
 
     function markTheSearchedValue(stringToMark, startMark, markLength) {
-        return stringToMark.slice(0, startMark) + '<span class="searched-school-mark">' + stringToMark.slice(startMark, startMark + markLength) + '</span>' + stringToMark.slice(startMark + markLength);
+        return stringToMark.slice(0, startMark) + '<span class="' + clsSearhedSchooMark + '">' + stringToMark.slice(startMark, startMark + markLength) + '</span>' + stringToMark.slice(startMark + markLength);
     }
+
     /**
      * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
      * @param stringToRemoveMark
@@ -123,14 +133,21 @@ jQuery(document).ready(function ($) {
 
 
     function removeMarkTheSearchedValue(stringToRemoveMark) {
-        return stringToRemoveMark.replace('<span class="mark">', '').replace('</span>', '');
+        var ret = stringToRemoveMark.html();
+
+        if (stringToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
+            ret = stringToRemoveMark.html().replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
+        }
+
+        return ret;
     }
+
     /**
      * What to do when user puts focus on the text input of the school filter:
      * 1. The map should go back to initial state
      * 2. The cities and schools should be filtered acoording to whatever input is in the text box
      * 3. Any markers showing on the map should be closed
-     * @param self - $("#schools_filter_text")
+     * @param self - $('#schools_filter_text')
      */
 
 
@@ -142,21 +159,10 @@ jQuery(document).ready(function ($) {
 
         closeClickHandler();
     }
+
     /***************************************
      * ********* Google Maps API ********* *
      ***************************************/
-
-
-    var map, geocoder, kmlLayer, infowindow, marker;
-    var mapIsReset = true;
-    /**
-     * Needs to called before the map is created,
-     * so any new cities are inserted into the json file and are shown in the list
-     */
-
-    updateCitiesFile();
-    /* Call initMap to initialize the map */
-    //initMap();
 
     /**
      * Initialize the map and all its objects - kmlLayer, infowindow
@@ -185,29 +191,36 @@ jQuery(document).ready(function ($) {
 
         google.maps.event.addListener(map, 'click', mapClickHandler);
     }
+
     /**
      * Create map and center it in the center of Israel
      */
 
 
     function createMap() {
+        var lat = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32.61074307932485;
+        var long = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 36.474776492187516;
         var mapOptions = {
-            center: new google.maps.LatLng(32.61074307932485, 36.474776492187516)
+            center: new google.maps.LatLng(lat, long)
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
+
     /**
      * Synchronize with an externally created mao by using the KmlLayer object.
      * We export a kmz file from the external map and upload it to our site uploads folder.
+     * We add the Date parameter to get the updated version once a day. We don't do it more frequently because it hurts performance
      */
 
 
     function addKmlLayer() {
+        var today = new Date();
         kmlLayer = new google.maps.KmlLayer({
-            url: "".concat(schools_and_map_filter_ajax_obj.xmz_file)
+            url: "".concat(schools_and_map_filter_ajax_obj.kmz_file, "?ver=").concat(today.getDate())
         });
         resetMap();
     }
+
     /**
      * Reset the map to the kmlLayer
      */
@@ -219,6 +232,7 @@ jQuery(document).ready(function ($) {
             mapIsReset = true;
         }
     }
+
     /**
      * The window which pops up on clicking a marker has to be styled,
      * and instead of trying to style the actual popup, we create our own.
@@ -235,6 +249,7 @@ jQuery(document).ready(function ($) {
             pixelOffset: new google.maps.Size(0, -35)
         });
     }
+
     /**
      * When the map's bounds change (by zoom or by dragging the map),
      * filter the city list to only the cities that appear in the map
@@ -246,7 +261,7 @@ jQuery(document).ready(function ($) {
         /* Sometimes the kml layer comes late and the bounds change while the user is filtering.
         * Since the bounds chage affect the city list and so does the filtering, we should make sure
         * the application of the changed bounds shouldn't happen if the user is in the middle of filtering. */
-        if (!$("#schools_filter_text").is(':focus')) {
+        if (!fieldSearchSchools.is(':focus')) {
             // get new bounds
             var mapBounds = map.getBounds();
 
@@ -254,21 +269,22 @@ jQuery(document).ready(function ($) {
                 $.getJSON("".concat(schools_and_map_filter_ajax_obj.json_file, "?ver=").concat(Date.now()), function (data) {
                     var res = getCitiesinMap(data, mapBounds); // filter out cities that don't appear in bounds
 
-                    $('.elementor-accordion .elementor-tab-title a').each(function (key, value) {
-                        // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
+                    cityNameLinkElements.each(function (key, value) {
+                        var elementorAccordionItem = $(value).parents('.elementor-accordion-item'); // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
+
                         var cityExists = res.filter(function (item) {
                             return item.name.trim() === value.innerHTML.trim();
                         }); // if the city doesn't appear in bounds, hide it
 
                         if (cityExists.length === 0) {
                             // hide it
-                            $(value).parents('.elementor-accordion-item').hide();
+                            elementorAccordionItem.hide(highSpeed);
                         } // if the city appears - make it show (needed on zoom out, to return the cities previously hidden)
                         else {
-                            /* The value is the ('.elementor-accordion .elementor-tab-title a')
+                            /* The value is the cityNameLinkElement
                             * if the city exists, turn on its parent and its siblings which are the schools */
-                            $(value).parents('.elementor-accordion-item').show();
-                            $(value).parents('.elementor-accordion-item').find('.elementor-tab-content a').show();
+                            elementorAccordionItem.show();
+                            elementorAccordionItem.find('.elementor-tab-content a').show();
                         }
                     });
                 });
@@ -277,6 +293,7 @@ jQuery(document).ready(function ($) {
             mapIsReset = false;
         }
     }
+
     /**
      * Get an array of cities that appear in the map after its bounds have changed
      * @param cityFilecontents - the cities that we stored in our json file, including their geocode data
@@ -304,6 +321,7 @@ jQuery(document).ready(function ($) {
             }
         });
     }
+
     /**
      * Run when the infowindow is closed. It changes the marker back to the original one
      */
@@ -313,6 +331,7 @@ jQuery(document).ready(function ($) {
         closeInfoWindow();
         removeProviouslySelectedMarker();
     }
+
     /**
      * Clicking the map closes anything that had to do with clicking a marker, namely:
      * 1. The info window
@@ -323,6 +342,7 @@ jQuery(document).ready(function ($) {
     function mapClickHandler() {
         closeClickHandler();
     }
+
     /**
      * Remove the marker that was created a marker was clicked, back to the original marker
      */
@@ -333,6 +353,7 @@ jQuery(document).ready(function ($) {
             infowindow.close();
         }
     }
+
     /**
      * delete the marker that was created for the previously clicked marker
      */
@@ -343,6 +364,7 @@ jQuery(document).ready(function ($) {
             marker.setMap(null);
         }
     }
+
     /**
      * This function is run when a city is clicked and it syncs city click with map, i.e the map zooms in on that city.
      * It looks up the city in our JSON file (cities_map.json, in the JS folder of this plugin),
@@ -354,7 +376,7 @@ jQuery(document).ready(function ($) {
         /* Give the current item a class so we know if it's open or closed.
         * We give the class to the parent, elementor-accordion-item */
         // shut off the other cities
-        var accordionItem = self.parent();
+        var accordionItem = self.parents('.elementor-accordion-item');
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
@@ -374,7 +396,7 @@ jQuery(document).ready(function ($) {
             } // this is the link that was clicked, and its inner HTML contains the city name
 
 
-            var address = self.children('a').html(); // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
+            var address = accordionItem.find('.elementor-tab-title a').html(); // read fron the JSON file. Added the Date.now() to the version, so the file is always fresh during development.
             // TODO: remove version when upload to production
 
             $.getJSON("".concat(schools_and_map_filter_ajax_obj.json_file, "?ver=").concat(Date.now()), function (data) {
@@ -392,6 +414,7 @@ jQuery(document).ready(function ($) {
             resetMap();
         }
     }
+
     /**
      * Change the zoom and bounds of the map according to the location of the city that was clicked.
      * The method attempts to first use the southWestViewport and northEastViewport properties because they are the most accurate.
@@ -415,6 +438,7 @@ jQuery(document).ready(function ($) {
             }
         }
     }
+
     /**
      * If the city doesn't exist in the JSON file, we use the geocoder to get its ccordinates info from google, and insert it into the JSON file
      */
@@ -423,18 +447,16 @@ jQuery(document).ready(function ($) {
     function updateCitiesFile() {
         if (schools_and_map_filter_ajax_obj.is_user_admin) {
             $.getJSON("".concat(schools_and_map_filter_ajax_obj.json_file, "?ver=").concat(Date.now()), function (data) {
-                console.log(2);
                 var isThereANewCity = false; // filter out cities that don't appear in bounds
 
-                $('.elementor-accordion .elementor-tab-title a').each(function (key, cityElement) {
+                cityNameLinkElements.each(function (key, cityElement) {
                     // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
                     var cityExists = data.filter(function (item) {
                         return item.name.trim() === cityElement.innerHTML.trim();
                     }); // if the city doesn't appear in bounds, hide it
 
                     if (cityExists.length === 0) {
-                        console.log(cityElement.innerHTML); // then check if it has a geocode and simply didn't appear in the file
-
+                        // then check if it has a geocode and simply didn't appear in the file
                         var address = cityElement.innerHTML; // get the name of the current city
 
                         /**** prepare the geocode request and send it to the geocode function ****/
@@ -444,8 +466,6 @@ jQuery(document).ready(function ($) {
                         };
                         geocoder = new google.maps.Geocoder();
                         geocoder.geocode(geocodeRequest, function (results, status) {
-                            console.log(results);
-
                             if (status === google.maps.GeocoderStatus.OK) {
                                 if (results.length > 0) {
                                     /* Insert the result from the geocode function into the file*/
@@ -463,10 +483,11 @@ jQuery(document).ready(function ($) {
                         });
                     } // END if (cityExists.length === 0)
 
-                }); // END $('.elementor-accordion .elementor-tab-title a') iteration
+                }); // END cityNameLinkElementsiteration
             }); // END json file iteration
         }
     }
+
     /**
      * Adds the new city to the city array and sends it to the backend via AJAX.
      * The backend inserts it into the json file
@@ -489,6 +510,7 @@ jQuery(document).ready(function ($) {
         cities.push(newCity);
         return cities;
     }
+
     /**
      *
      * @param cities
@@ -506,6 +528,7 @@ jQuery(document).ready(function ($) {
         }, function (data) {//nothing to do with data
         });
     }
+
     /**
      * This is the function that creates our own info window
      * @param event - has the featureData and latLng fields that are needed to create our window.
@@ -513,22 +536,80 @@ jQuery(document).ready(function ($) {
 
 
     function openInfoWindow(event) {
-        console.log(event.featureData);
-        var infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
-        var infowindowDescription = "<div class='info_window_content'>";
-        infowindowDescription += getInfowindowFeaturedData(event.featureData.description);
-        infowindowDescription += "</div>"; // + event.featureData.description +
+        if (event.featureData.status === "OK") {
+            var infoWindowWrapperBegin = "<div class='" + infoWindowWrapperClass + "'" + updateInfowWindowForA11y() + ">";
+            var infoWindowWrapperEnd = "</div>";
+            var infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
+            var infowindowDescription = "<div class='info_window_content'>";
+            infowindowDescription += getInfowindowFeaturedData(event.featureData.description);
+            infowindowDescription += "</div>"; // + event.featureData.description +
 
-        infowindow.setContent(infowindowTitle + infowindowDescription);
-        infowindow.setPosition(event.latLng); // even though we set the pixelOffset in the constructor, we also have to set the position.
+            infowindow.setContent(infoWindowWrapperBegin + infowindowTitle + infowindowDescription + infoWindowWrapperEnd);
+            infowindow.setPosition(event.latLng); // even though we set the pixelOffset in the constructor, we also have to set the position.
 
-        /* this is the only way I found to hide the original infowindow because suppressInfoWindows doesn't work and neither does showInfoWindowOnClick.
-        Got the idea from here: https://stackoverflow.com/a/22083454/278
-        maybe try baloonstyle: https://stackoverflow.com/questions/32557103/kml-file-is-there-a-way-to-completely-disable-description-bubbles*/
+            /* this is the only way I found to hide the original infowindow because suppressInfoWindows doesn't work and neither does showInfoWindowOnClick.
+            Got the idea from here: https://stackoverflow.com/a/22083454/278
+            maybe try baloonstyle: https://stackoverflow.com/questions/32557103/kml-file-is-there-a-way-to-completely-disable-description-bubbles*/
 
-        event.featureData.infoWindowHtml = "";
-        infowindow.open(map);
+            event.featureData.infoWindowHtml = "";
+            infowindow.open(map);
+        }
     }
+
+    /**
+     * Extract from the array of info the address of the school,
+     * by searching for the part that has the string כתובת: or אתר בית ספר or any other string that might indicate our desired info
+     * @param descriptionParts - the array of info from the info window
+     * @param searchString - the string that might indicate our desired info
+     * @param label - the label of the current field. We want to get rid of it
+     * @returns {string} - the school addresses, without any other words
+     */
+
+
+    function getInfoFromInfowindow(descriptionParts, searchString, label) {
+        var ret = "";
+        var infoArr = descriptionParts.filter(function (item) {
+            return item.indexOf(searchString) > -1;
+        });
+
+        if (infoArr.length > 0) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = infoArr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var infoData = _step.value;
+                    var tmp = decodeURI(encodeURI(infoData).replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
+                        .replace(label, "").replace(schools_and_map_filter_ajax_obj.strMarkerDescription, "").replace(/target="_blank"/g, "").trim();
+
+                    if (ret.indexOf(tmp) === -1) {
+                        if (ret !== "") {
+                            ret += ", ";
+                        }
+
+                        ret += tmp;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+
+        return ret;
+    }
+
     /**
      * Get the description from the Google window and parse them to display in our window
      * @param description - has the address and the site url of this school
@@ -537,109 +618,49 @@ jQuery(document).ready(function ($) {
 
 
     function getInfowindowFeaturedData(description) {
-        var descriptionParts = description.split('<br>');
         var ret = "",
             schoolAddress,
             schoolUrl;
+        var descriptionParts = description.split('<br>');
 
-        if (descriptionParts.length === 4) {
-            /* the string has 4 parts, where the first 2 are a lesser duplications of the 2 latter ones.
-             * In the 2 latter ones:
-             * descriptionParts[2] is the school address,
-             * descriptionParts[3] is the school url
-             * make the term title bold:
-             * */
-            schoolAddress = descriptionParts[2];
-            schoolUrl = descriptionParts[3];
-        } else if (descriptionParts.length) {
-            /* Ths string only has the description. We'll work with that */
-            schoolAddress = leaveOutUnnecessaryStuff(descriptionParts[0]);
-            schoolUrl = descriptionParts[1];
-        }
-        /* Only if there is an actual address and not only the title, display it in HTML */
+        if (descriptionParts.length > 0) {
+            schoolAddress = getInfoFromInfowindow(descriptionParts, schools_and_map_filter_ajax_obj.strSchoolAddress, schools_and_map_filter_ajax_obj.strSchoolAddress);
+            schoolUrl = getInfoFromInfowindow(descriptionParts, '<a', schools_and_map_filter_ajax_obj.strSchoolUrl);
+            ret += wrapInHTML(schools_and_map_filter_ajax_obj.strSchoolAddress, schoolAddress);
 
-
-        if (schoolAddress.indexOf(":") < schoolAddress.length - 1) {
-            schoolAddress = removeTrailingSlashFromURL(schoolAddress);
-            ret += "<div>" + makeTitleBold(schoolAddress) + "</div>";
-        }
-        /* Only if there is an actual address and not only the title, display it in HTML */
-
-
-        if (schoolUrl.indexOf(":") < schoolUrl.length - 1) {
-            // remove trailing slash from site url
-            schoolUrl = removeTrailingSlashFromURL(schoolUrl);
-            ret += "<div>" + makeTitleBold(schoolUrl) + "</div>";
+            if (schoolUrl !== "") {
+                schoolUrl = removeTrailingSlashFromURL(schoolUrl);
+                ret += wrapInHTML(schools_and_map_filter_ajax_obj.strSchoolUrl, schoolUrl);
+            }
         }
 
         return ret;
     }
+
     /**
-     *
-     * @param firstPartOfDescription
-     * @returns {*|string}
-     */
-
-
-    function leaveOutUnnecessaryStuff(firstPartOfDescription) {
-        var ret = firstPartOfDescription;
-        var semicolonPositions = indicesOfSemicolon(firstPartOfDescription);
-
-        if (semicolonPositions.length > 1) {
-            // return the string from after the one before last semicolon
-            var startStrFrom = semicolonPositions[semicolonPositions.length - 2] + 1;
-            ret = firstPartOfDescription.substring(startStrFrom).trim();
-        }
-
-        return ret;
-    }
-    /**
-     * Removes the traling slash from the school URL
+     * Removes the trailing slash from the school URL
      * @param schoolUrl - the school URL
      * @returns the schoolUrl without trailing slash
      */
 
 
     function removeTrailingSlashFromURL(schoolUrl) {
-        var trailingSlash = "/</a>";
-        var withoutTrailingSlash = "</a>";
-        return schoolUrl.replace(trailingSlash, withoutTrailingSlash).replace("<a ", "<a class='info_window_school_link'");
+        return schoolUrl.replace(/\/<\/a>/g, "</a>").replace(/<a /g, "<a class='info_window_school_link'");
     }
+
     /**
-     * Finds all occurrences of a semicolon in a string.
-     * Skips any semicolon that is part of a url
-     * @param str - the string to look in
-     * @returns {Array} - array of semicolon positions
-     */
-
-
-    function indicesOfSemicolon(str) {
-        var regex = /:/gi,
-            result,
-            indices = [];
-
-        while (result = regex.exec(str)) {
-            // make sure this isn't the semicolon from http://:
-            if (str.substring(result.index - 5, result.index - 1) !== 'http') {
-                indices.push(result.index);
-            }
-        }
-
-        return indices;
-    }
-    /**
-     *
+     * Wrap the strng with a div, and add the title wrapped in a span with class.
+     * @param title
      * @param str
-     * @returns {string}
+     * @returns {string} - str + title in HTML tags
      */
 
 
-    function makeTitleBold(str) {
-        // the part from the beginning to the colon should be bold
-        var indexOfColon = str.indexOf(":");
-        str = "<span class='info_window_term'>" + str.substr(0, indexOfColon + 1) + "</span>" + str.substr(indexOfColon + 1);
+    function wrapInHTML(title, str) {
+        str = "<div>" + "<span class='info_window_term'>" + title + "</span> " + str + "</div>";
         return str;
     }
+
     /**
      * https://stackoverflow.com/questions/41480242/how-to-change-the-icon-on-google-map-while-the-layer-is-import-by-kml-file
      * @param event
@@ -658,6 +679,15 @@ jQuery(document).ready(function ($) {
 
         marker.setIcon('https://mapa-linux-test.ort.org.il/ort-site-2019/wp-content/plugins/schools-and-map/img/selected_marker.png');
     }
+
+    function updateInfowWindowForA11y() {
+        var pageStyle = $('#' + elementToWatchForAccessibility).attr('style');
+
+        if (pageStyle !== "") {
+            return "style='" + pageStyle + "'";
+        }
+    }
+
     /**
      * taken from here:
      * https://stackoverflow.com/questions/37236774/how-to-control-the-content-of-a-google-maps-info-window-on-a-kmllayer/37240595#37240595
@@ -670,26 +700,35 @@ jQuery(document).ready(function ($) {
         openInfoWindow(event);
         changeMarkerIcon(event);
     }
+
     /***************************************
      * ********** Button to Map ********** *
      ***************************************/
 
     /**
+     * There is a button to jump from the city list to the map, and a button to jump back.
+     * They  interchange on scroll:
      * When the list is in view show the button to the map,
      * and when the map is in view show the button to the list
      */
 
 
     function windowScrollHandler() {
-        if (isElementInViewport($('#map'))) {
-            // when map is in view, hide the map button
-            $('.link_to_map').hide();
-            $('.link_to_list').show();
-        } else {
-            $('.link_to_map').show();
-            $('.link_to_list').hide();
+        var linkToMap = $('.link_to_map');
+        var linkToList = $('.link_to_list');
+
+        if (linkToMap.is(':visible') || linkToList.is(':visible')) {
+            if (isElementInViewport(mapElement)) {
+                // when map is in view, hide the map button
+                linkToMap.hide();
+                linkToList.show();
+            } else {
+                linkToMap.show();
+                linkToList.hide();
+            }
         }
     }
+
     /**
      * Check if parameter is in viewport by comparing its borders and comparing it with the window's height
      * https://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
@@ -707,20 +746,22 @@ jQuery(document).ready(function ($) {
 
 
         var rect = el.getBoundingClientRect();
-        return rect.top >= 0 && rect.top <= $(window).height();
+        return rect.top >= 0 && rect.top <= $(window).height() || rect.bottom >= 0 && rect.bottom <= $(window).height();
     }
-    /* Watch accessibility css change of background color */
 
+    /***************************************
+     * ******* A11y Functionality ******** *
+     ***************************************/
 
-    bodyCssChange();
     /**
+     * When background color changes, keep the map's background transparent
      * taken from here:
      * https://stackoverflow.com/a/20683311/278
      */
 
     function bodyCssChange() {
         // Select the node that will be observed for mutations
-        var targetNode = document.getElementById('page'); // Options for the observer (which mutations to observe)
+        var targetNode = document.getElementById(elementToWatchForAccessibility); // Options for the observer (which mutations to observe)
 
         var config = {
             attributes: true,
@@ -730,46 +771,45 @@ jQuery(document).ready(function ($) {
             subtree: false,
             attributeOldValue: true,
             characterDataOldValue: true
-        }; // Callback function to execute when mutations are observed
-
-        var index = 0;
+        }; // In this callback function we traverse the map's child nodes and assign them a transparent background
 
         var callback = function callback(mutationsList) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
 
             try {
-                for (var _iterator = mutationsList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var mutation = _step.value;
+                for (var _iterator2 = mutationsList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var mutation = _step2.value;
 
-                    // console.log(mutation);
                     if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                        console.log(typeof map !== 'undefined');
-                        $('#map').css({
+                        mapElement.css({
                             'background-color': 'transparent'
                         });
-                        var currElements = $('#map').children();
+                        var currElements = mapElement.children();
 
                         while (currElements.length > 0) {
-                            currElements.css({
-                                'background-color': 'transparent'
-                            });
+                            if (shouldStyleChange(currElements)) {
+                                currElements.css({
+                                    'background-color': 'transparent'
+                                });
+                            }
+
                             currElements = currElements.children();
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion && _iterator.return != null) {
-                        _iterator.return();
+                    if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                        _iterator2.return();
                     }
                 } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
                     }
                 }
             }
@@ -779,5 +819,21 @@ jQuery(document).ready(function ($) {
         var observer = new MutationObserver(callback); // Start observing the target node for configured mutations
 
         observer.observe(targetNode, config);
+    }
+
+    /**
+     * Return if current element should change style.
+     * Needed to keep the accessibility style for the infoWindow
+     */
+
+
+    function shouldStyleChange(currElements) {
+        var shouldChangeStyle = true;
+        currElements.each(function () {
+            if ($(this).get(0) === $('.' + infoWindowWrapperClass).get(0)) {
+                shouldChangeStyle = false;
+            }
+        });
+        return shouldChangeStyle;
     }
 });
