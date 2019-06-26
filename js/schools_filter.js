@@ -10,7 +10,8 @@ jQuery(document).ready(function ($) {
     let btnEnableMap = $('.elementor-button');
     let mapElement = $('#map');
     let clsSearhedSchooMark = "searched-school-mark";
-
+    let mediumSpeed = 2000;
+    let highSpeed = 100;
     /**********************************
      ************* EVENTS *************
      **********************************/
@@ -23,14 +24,14 @@ jQuery(document).ready(function ($) {
 
     cityNameElements.on('click', e => {
         if (mapStaticImage.is(":visible")) {
-            mapStaticImage.hide(2000);
+            mapStaticImage.hide(mediumSpeed);
             initMap();
         }
         cityClickedHandler($(e.target));
     });
 
     btnEnableMap.on('click', () => {
-        mapStaticImage.hide(2000);
+        mapStaticImage.hide(mediumSpeed);
         initMap();
     });
 
@@ -258,7 +259,7 @@ jQuery(document).ready(function ($) {
                         // if the city doesn't appear in bounds, hide it
                         if (cityExists.length === 0) {
                             // hide it
-                            elementorAccordionItem.hide();
+                            elementorAccordionItem.hide(highSpeed);
                         }
                         // if the city appears - make it show (needed on zoom out, to return the cities previously hidden)
                         else {
