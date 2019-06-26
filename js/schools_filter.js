@@ -15,6 +15,7 @@ jQuery(document).ready(function ($) {
     let map, geocoder, kmlLayer, infowindow, marker;
     let mapIsReset = true;
     let infoWindowWrapperClass = 'info_window_wrapper';
+    let elementToWatchForAccessibility = "page";
 
     /**********************************
      ************* EVENTS *************
@@ -611,7 +612,7 @@ jQuery(document).ready(function ($) {
     }
 
     function updateInfowWindowForA11y() {
-        let pageStyle = $('#page').attr('style');
+        let pageStyle = $('#' + elementToWatchForAccessibility).attr('style');
         if (pageStyle !== "") {
             return "style='" + pageStyle + "'";
         }
@@ -690,7 +691,7 @@ jQuery(document).ready(function ($) {
      */
     function bodyCssChange() {
         // Select the node that will be observed for mutations
-        var targetNode = document.getElementById('page');
+        var targetNode = document.getElementById(elementToWatchForAccessibility);
         // Options for the observer (which mutations to observe)
         var config = {
             attributes: true,
@@ -702,25 +703,25 @@ jQuery(document).ready(function ($) {
             characterDataOldValue: true
         };
 
-        // Callback function to execute when mutations are observed
+        // In this callback function we traverse the map's child nodes and assign them a transparent background
         var callback = function (mutationsList) {
             for (var mutation of mutationsList) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
                     mapElement.css({
                         'background-color': 'transparent'
                     });
+
                     let currElements = mapElement.children();
-                    mapElement.css({
-                        'background-color': 'transparent'
-                    });
 
                     while (currElements.length > 0) {
-                        currElements.css({
-                            'background-color': 'transparent'
-                        });
+
+                        if (shouldStyleChange(currElements)) {
+                            currElements.css({
+                                'background-color': 'transparent'
+                            });
+                        }
                         currElements = currElements.children();
                     }
-
                 }
             }
         };
@@ -731,5 +732,19 @@ jQuery(document).ready(function ($) {
         // Start observing the target node for configured mutations
         observer.observe(targetNode, config);
 
+    }
+
+    /**
+     * Return if current element should change style.
+     * Needed to keep the accessibility style for the infoWindow
+     */
+    function shouldStyleChange(currElements) {
+        let shouldChangeStyle = true;
+        currElements.each(function () {
+            if ($(this).get(0) === $('.' + infoWindowWrapperClass).get(0)) {
+                shouldChangeStyle = false;
+            }
+        });
+        return shouldChangeStyle;
     }
 });
