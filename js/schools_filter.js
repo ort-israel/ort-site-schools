@@ -12,6 +12,9 @@ jQuery(document).ready(function ($) {
     let clsSearhedSchooMark = "searched-school-mark";
     let mediumSpeed = 2000;
     let highSpeed = 100;
+    let map, geocoder, kmlLayer, infowindow, marker;
+    let mapIsReset = true;
+
     /**********************************
      ************* EVENTS *************
      **********************************/
@@ -36,6 +39,16 @@ jQuery(document).ready(function ($) {
     });
 
     window.addEventListener('scroll', windowScrollHandler);
+
+    /* Watch accessibility css change of background color */
+    bodyCssChange();
+
+    /**
+     * Needs to called before the map is created,
+     * so any new cities are inserted into the json file and are shown in the list
+     */
+    updateCitiesFile();
+
 
     /**********************************
      ***** SEARCH SCHOOLS FILTER ******
@@ -146,19 +159,6 @@ jQuery(document).ready(function ($) {
     /***************************************
      * ********* Google Maps API ********* *
      ***************************************/
-
-    let map, geocoder, kmlLayer, infowindow, marker;
-    let mapIsReset = true;
-
-    /**
-     * Needs to called before the map is created,
-     * so any new cities are inserted into the json file and are shown in the list
-     */
-    updateCitiesFile();
-
-    /* Call initMap to initialize the map */
-
-    //initMap();
 
     /**
      * Initialize the map and all its objects - kmlLayer, infowindow
@@ -667,10 +667,12 @@ jQuery(document).ready(function ($) {
         );
     }
 
-    /* Watch accessibility css change of background color */
-    bodyCssChange();
+    /***************************************
+     * ******* A11y Functionality ******** *
+     ***************************************/
 
     /**
+     * When background color changes, keep the map's background transparent
      * taken from here:
      * https://stackoverflow.com/a/20683311/278
      */
