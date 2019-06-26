@@ -62,13 +62,11 @@ jQuery(document).ready(function ($) {
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
     function filterSchools(searchField) {
-        /* Start with SCHOOL names - find('.elementor-tab-content a') -
-        * find the schools that match the searched value.
-        * Start with showing all, for cases when the search changed completely */
-        let shownCitiesBecauseOfSchools = [];
+
+        let citiesToShow = [];
         let elementorAccordionItems = $('.elementor-accordion-item');
 
-        // first show all accordion items, because some of them might have been hidden by previous search. then iterate over them
+        // First show all accordion items because some of them might have been hidden by previous search.
         elementorAccordionItems.show().each(function () {
             let currentCitySchools = $(this).find('.elementor-tab-content li');
             // now show all schools (because some of them might have been hidden by previous search)
@@ -82,22 +80,20 @@ jQuery(document).ready(function ($) {
 
                 if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
                     currSchool.html(markTheSearchedValue(currSchool.html(), currSchool.html().indexOf(searchValue), searchValue.length));
-                    shownCitiesBecauseOfSchools.push(currSchool.parents('.elementor-accordion-item'));
+                    citiesToShow.push(currSchool.parents('.elementor-accordion-item'));
                 }
             });
 
         });
 
-        /* Then Check the city name:
-        * If it's in the shownCitiesBecauseOfSchools, turn on the isItemInShownCities and leave the loop */
         elementorAccordionItems.each(function () {
-            let isItemInShownCities = false;
+            let isItemInCitiesToShow = false;
             let doesItemCityHaveValue = false;
             let currCityName = $(this).find('.elementor-tab-title a').html();
-            $(shownCitiesBecauseOfSchools).each(function () {
+            $(citiesToShow).each(function () {
                 let currShownCityName = $(this).find('.elementor-tab-title a').html();
                 if (currCityName === currShownCityName) {
-                    isItemInShownCities = true;
+                    isItemInCitiesToShow = true;
                     return true;
                 }
             });
@@ -106,8 +102,8 @@ jQuery(document).ready(function ($) {
             if (currCityName.indexOf(searchField.val()) > -1) {
                 doesItemCityHaveValue = true;
             }
-            /* Hide all accordion items whose cities  don't contain the searched value and who don't have a school that contains that value*/
-            if (!isItemInShownCities && !doesItemCityHaveValue) {
+            /* Hide all accordion items whose cities don't contain the searched value and who don't have a school that contains that value*/
+            if (!isItemInCitiesToShow && !doesItemCityHaveValue) {
                 $(this).hide();
             }
         });
