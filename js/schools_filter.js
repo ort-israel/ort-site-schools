@@ -196,7 +196,7 @@ jQuery(document).ready(function ($) {
      */
     function createMap(lat = 32.61074307932485, long = 36.474776492187516) {
         let mapOptions = {
-            center: new google.maps.LatLng(lat, long),
+            center: new google.maps.LatLng(lat, long)
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
