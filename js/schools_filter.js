@@ -202,10 +202,12 @@ jQuery(document).ready(function ($) {
     /**
      * Synchronize with an externally created mao by using the KmlLayer object.
      * We export a kmz file from the external map and upload it to our site uploads folder.
+     * We add the Date parameter to get the updated version once a day. We don't do it more frequently because it hurts performance
      */
     function addKmlLayer() {
+        let today = new Date();
         kmlLayer = new google.maps.KmlLayer({
-            url: `${schools_and_map_filter_ajax_obj.kmz_file}`
+            url: `${schools_and_map_filter_ajax_obj.kmz_file}?ver=${today.getDate()}`
         });
         resetMap();
     }
