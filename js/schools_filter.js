@@ -14,6 +14,7 @@ jQuery(document).ready(function ($) {
     let highSpeed = 100;
     let map, geocoder, kmlLayer, infowindow, marker;
     let mapIsReset = true;
+    let infoWindowWrapperClass = 'info_window_wrapper';
 
     /**********************************
      ************* EVENTS *************
@@ -494,12 +495,14 @@ jQuery(document).ready(function ($) {
      * @param event - has the featureData and latLng fields that are needed to create our window.
      */
     function openInfoWindow(event) {
-        let infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
-        let infowindowDescription = "<div class='info_window_content'>";
         if (event.featureData.status === "OK") {
+            let infoWindowWrapperBegin = "<div class='" + infoWindowWrapperClass + "'" + updateInfowWindowForA11y() + ">";
+            let infoWindowWrapperEnd = "</div>";
+            let infowindowTitle = "<h3 class='info_window_header'>" + event.featureData.name + "</h3>";
+            let infowindowDescription = "<div class='info_window_content'>";
             infowindowDescription += getInfowindowFeaturedData(event.featureData.description);
             infowindowDescription += "</div>"; // + event.featureData.description +
-            infowindow.setContent(infowindowTitle + infowindowDescription);
+            infowindow.setContent(infoWindowWrapperBegin + infowindowTitle + infowindowDescription + infoWindowWrapperEnd);
             infowindow.setPosition(event.latLng); // even though we set the pixelOffset in the constructor, we also have to set the position.
             /* this is the only way I found to hide the original infowindow because suppressInfoWindows doesn't work and neither does showInfoWindowOnClick.
             Got the idea from here: https://stackoverflow.com/a/22083454/278
@@ -563,7 +566,7 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Removes the traling slash from the school URL
+     * Removes the trailing slash from the school URL
      * @param schoolUrl - the school URL
      * @returns the schoolUrl without trailing slash
      */
@@ -605,6 +608,13 @@ jQuery(document).ready(function ($) {
 
         // give it its special icon
         marker.setIcon('https://mapa-linux-test.ort.org.il/ort-site-2019/wp-content/plugins/schools-and-map/img/selected_marker.png');
+    }
+
+    function updateInfowWindowForA11y() {
+        let pageStyle = $('#page').attr('style');
+        if (pageStyle !== "") {
+            return "style='" + pageStyle + "'";
+        }
     }
 
     /**
