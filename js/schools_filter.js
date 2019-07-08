@@ -13,7 +13,6 @@ jQuery(document).ready(function ($) {
     let searhedSchoolMarkTagBegin = '<span class="' + clsSearhedSchooMark + '">';
     let searhedSchoolMarkTagEnd = '</span>';
     let mediumSpeed = 2000;
-    let highSpeed = 100;
     let map, geocoder, kmlLayer, infowindow, marker;
     let mapIsReset = true;
     let infoWindowWrapperClass = 'info_window_wrapper';
@@ -257,7 +256,7 @@ jQuery(document).ready(function ($) {
                         // if the city doesn't appear in bounds, hide it
                         if (cityExists.length === 0) {
                             // hide it
-                            elementorAccordionItem.hide(highSpeed);
+                            elementorAccordionItem.hide();
                         }
                         // if the city appears - make it show (needed on zoom out, to return the cities previously hidden)
                         else {
