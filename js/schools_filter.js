@@ -24,9 +24,9 @@ jQuery(document).ready(function ($) {
 
     /* When a user types, or focuses in the text input call the filterSchools function. */
 
-    fieldSearchSchools.on('keyup', e => filterSchools($(e.target)));
+    fieldSearchSchools.on('keyup', e => filterSchools(e));
 
-    fieldSearchSchools.on('focus', e => schoolsFilterTextFocusHandler($(e.target)));
+    fieldSearchSchools.on('focus', e => schoolsFilterTextFocusHandler(e));
 
     cityNameElements.on('click', e => {
         if (mapStaticImage.is(":visible")) {
@@ -62,10 +62,10 @@ jQuery(document).ready(function ($) {
      * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
-    function filterSchools(searchField) {
-
+    function filterSchools(event) {
         let citiesToShow = [];
         let elementorAccordionItems = $('.elementor-accordion-item');
+        let searchValue = $(event.target).val();
 
         // First show all accordion items because some of them might have been hidden by previous search.
         elementorAccordionItems.show().each(function () {
@@ -75,7 +75,6 @@ jQuery(document).ready(function ($) {
 
             currentCitySchools.toArray().some(school => {
                 let currSchool = $(school);
-                let searchValue = searchField.val();
 
                 currSchool.html(removeMarkTheSearchedValue(currSchool));
 
@@ -100,7 +99,7 @@ jQuery(document).ready(function ($) {
             });
 
             // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
-            if (currCityName.indexOf(searchField.val()) > -1) {
+            if (currCityName.indexOf(searchValue) > -1) {
                 doesItemCityHaveValue = true;
             }
             /* Hide all accordion items whose cities don't contain the searched value and who don't have a school that contains that value*/
@@ -139,13 +138,13 @@ jQuery(document).ready(function ($) {
      * 1. The map should go back to initial state
      * 2. The cities and schools should be filtered acoording to whatever input is in the text box
      * 3. Any markers showing on the map should be closed
-     * @param self - $('#schools_filter_text')
+     * @param event
      */
-    function schoolsFilterTextFocusHandler(self) {
+    function schoolsFilterTextFocusHandler(event) {
         // return map to original bounds and size
         resetMap();
         // filter the schools
-        filterSchools(self);
+        filterSchools(event);
         // close any open markers and infowindows
         closeClickHandler();
     }
