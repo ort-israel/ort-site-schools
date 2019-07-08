@@ -275,7 +275,7 @@ jQuery(document).ready(function ($) {
      * Get an array of cities that appear in the map after its bounds have changed
      * @param cityFilecontents - the cities that we stored in our json file, including their geocode data
      * @param mapBounds - the bounds of the map after change
-     * @returns array of cities that appear in the map
+     * @returns the city that appears in the map, or nothing of city doesn't appear in the map
      */
     function getCitiesinMap(cityFilecontents, mapBounds) {
         return cityFilecontents.filter(city => {
@@ -414,7 +414,6 @@ jQuery(document).ready(function ($) {
     function updateCitiesFile() {
         if (schools_and_map_filter_ajax_obj.is_user_admin) {
             $.getJSON(`${schools_and_map_filter_ajax_obj.json_file}?ver=${Date.now()}`, (data) => {
-                let isThereANewCity = false;
                 // filter out cities that don't appear in bounds
                 cityNameLinkElements.each((key, cityElement) => {
                     // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
@@ -524,17 +523,17 @@ jQuery(document).ready(function ($) {
         let infoArr = descriptionParts.filter(item => item.indexOf(searchString) > -1);
         if (infoArr.length > 0) {
             for (var infoData of infoArr) {
-                let tmp = decodeURI(encodeURI(infoData)
+                let info = decodeURI(encodeURI(infoData)
                     .replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
                     .replace(label, "")
                     .replace(schools_and_map_filter_ajax_obj.strMarkerDescription, "")
                     .replace(/target="_blank"/g, "")
                     .trim();
-                if (ret.indexOf(tmp) === -1) {
+                if (ret.indexOf(info) === -1) {
                     if (ret !== "") {
                         ret += ", ";
                     }
-                    ret += tmp;
+                    ret += info;
                 }
             }
         }
@@ -576,9 +575,7 @@ jQuery(document).ready(function ($) {
 
 
     /**
-     * Wrap the strng with a div, and add the title wrapped in a span with class.
-     * @param title
-     * @param str
+     * Wrap the string with a div, and add the title wrapped in a span with class.
      * @returns {string} - str + title in HTML tags
      */
     function wrapInHTML(title, str) {
