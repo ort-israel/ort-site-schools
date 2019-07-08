@@ -10,6 +10,8 @@ jQuery(document).ready(function ($) {
     let btnEnableMap = $('.elementor-button');
     let mapElement = $('#map');
     let clsSearhedSchooMark = "searched-school-mark";
+    let searhedSchoolMarkTagBegin = '<span class="' + clsSearhedSchooMark + '">';
+    let searhedSchoolMarkTagEnd = '</span>';
     let mediumSpeed = 2000;
     let highSpeed = 100;
     let map, geocoder, kmlLayer, infowindow, marker;
@@ -110,29 +112,25 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Make the searched value stand out in the schoo name
-     * @param stringToMark
-     * @param startMark
-     * @param markLength
-     * @returns {string}
+     * Make the searched value stand out in the school name
      */
-    function markTheSearchedValue(stringToMark, startMark, markLength) {
-        return stringToMark.slice(0, startMark)
-            + '<span class="' + clsSearhedSchooMark + '">'
-            + stringToMark.slice(startMark, startMark + markLength)
-            + '</span>'
-            + stringToMark.slice(startMark + markLength);
+    function markTheSearchedValue(stringToMark, startMarkPos, markLength) {
+        return stringToMark.slice(0, startMarkPos)
+            + searhedSchoolMarkTagBegin
+            + stringToMark.slice(startMarkPos, startMarkPos + markLength)
+            + searhedSchoolMarkTagEnd
+            + stringToMark.slice(startMarkPos + markLength);
     }
 
     /**
      * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
-     * @param stringToRemoveMark
-     * @returns {string}
+     * @param elementToRemoveMark
+     * @returns the element without the mark
      */
-    function removeMarkTheSearchedValue(stringToRemoveMark) {
-        let ret = stringToRemoveMark.html();
-        if (stringToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
-            ret = stringToRemoveMark.html().replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
+    function removeMarkTheSearchedValue(elementToRemoveMark) {
+        let ret = elementToRemoveMark.html();
+        if (elementToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
+            ret = elementToRemoveMark.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, '');
         }
         return ret;
     }
