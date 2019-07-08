@@ -341,10 +341,15 @@ jQuery(document).ready(function ($) {
      * returns its coordinates, and those coordinates are assigned to the center of the map.
      */
     function cityClickedHandler(self) {
-        /* Give the current item a class so we know if it's open or closed.
-        * We give the class to the parent, elementor-accordion-item */
-        // shut off the other cities
+
         let accordionItem = self.parents('.elementor-accordion-item');
+
+        /* If city is open but doesn't have a cityOpen class,
+        identify it by the elementor-active class that its elementor-tab-content has.
+         This happens when one of cities is displayed open by default when the accordion loads */
+        if (accordionItem.children('.elementor-active').length > 0) {
+            accordionItem.addClass('cityOpen');
+        }
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
