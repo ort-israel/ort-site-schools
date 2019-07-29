@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Schools and Map\n"
 "POT-Creation-Date: 2019-06-17 11:41+0300\n"
-"PO-Revision-Date: 2019-06-23 11:32+0300\n"
+"PO-Revision-Date: 2019-06-27 09:38+0300\n"
 "Last-Translator: \n"
 "Language-Team: ORT Israel R&D center\n"
 "Language: he_IL\n"
@@ -34,7 +34,7 @@ msgstr "איפה היית רוצה ללמוד?"
 
 #: schools-and-maps.php:76
 msgid "City or school that interest you"
-msgstr "יישוב / בית ספר שמעניינים אותך"
+msgstr "יישוב / בית ספר שמעניין אותך"
 
 #~ msgid "filter schools"
 #~ msgstr "באיזו עיר?"
