@@ -45,7 +45,6 @@ class SchoolsAndMaps {
 				wp_enqueue_script( 'schools_and_map_filter', plugin_dir_url( __FILE__ ) . 'js/schools_filter.js', array( 'jquery' ), time(), true );
 			}
 			wp_enqueue_script( 'google-maps-script', "https://maps.googleapis.com/maps/api/js?key={$GOOGLE_MAPS_API}&language=he&region=IL", array( 'schools_and_map_filter' ), '1.0.1.2', true );
-			//wp_enqueue_style( 'schools_and_map_style', plugin_dir_url( __FILE__ ) . 'css/style.css', array(), time() );
 
 			// the page needs ajax in order to write to the citites json file
 			$title_nonce = wp_create_nonce( 'title_example' );
@@ -55,7 +54,7 @@ class SchoolsAndMaps {
 				'ajax_url'             => admin_url( 'admin-ajax.php' ),
 				'nonce'                => $title_nonce,
 				'is_user_admin'        => in_array( 'administrator', $user->roles ),
-				'kmz_file'             => site_url( 'wp-content/uploads/2019/03/ort-schools2019.kmz' ),
+				'kmz_file'             => plugin_dir_url( __FILE__ ) .'js/ort-schools.kmz' ,
 				'strSchoolAddress'     => __( 'school address:', 'schools-and-maps' ),
 				'strSchoolUrl'         => __( 'school url:', 'schools-and-maps' ),
 				'strMarkerDescription' => __( 'marker descirption:', 'schools-and-maps' ),

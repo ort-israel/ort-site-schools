@@ -1,0 +1,2752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>בתי ספר ומכללות, 2019</name>
+    <description><![CDATA[רשימת מוסדות הלימוד של רשת אורט ישראל- בתי ספר, חטיבות ביניים, חטיבות עליונות ומכללות.<br>מעודכן לשנה"ל תשע"ט/2019]]></description>
+    <Style id="icon-1899-DB4436-normal">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-DB4436-highlight">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-DB4436">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-DB4436-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-DB4436-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>מפת אורט</name>
+      <Placemark>
+        <name><![CDATA[חנוך לנער - אורט חב"ד אופקים]]></name>
+        <description><![CDATA[תיאור: כתובת: גולומב 37 אופקים<br>אתר בית ספר: https://cnlofakim.ort.org.il/<br>כתובת: גולומב 37 אופקים<br>אתר בית ספר: https://cnlofakim.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: גולומב 37 אופקים
+אתר בית ספר: https://cnlofakim.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>גולומב 37 אופקים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://cnlofakim.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.61528,31.3116,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אורנית</name>
+        <description><![CDATA[תיאור: כתובת: מבוא אורנית, אורנית <br>אתר בית ספר: https://oranit.ort.org.il/<br>כתובת: מבוא אורנית, אורנית<br>אתר בית ספר: https://oranit.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מבוא אורנית, אורנית 
+אתר בית ספר: https://oranit.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מבוא אורנית, אורנית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://oranit.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.99594,32.12792,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חט"ב אורט מוקיבלה- אחווה גלבוע المدرسة الإعدادية أورط مقيبلة]]></name>
+        <description><![CDATA[תיאור: כתובת: מוקיבלה<br>אתר בית ספר: https://muqeible.ort.org.il/<br>כתובת: מוקיבלה<br>אתר בית ספר: https://muqeible.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מוקיבלה
+אתר בית ספר: https://muqeible.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מוקיבלה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://muqeible.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.2948,32.51414,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>בית ספר מקיף אורט אחווה גלבוע (נאעורה)  المدرسة الشاملة أورط الأخوة جلبوع</name>
+        <description><![CDATA[תיאור: כתובת: נאעורה<br>אתר בית ספר: https://achva.ort.org.il/<br>כתובת: נאעורה<br>אתר בית ספר: https://achva.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: נאעורה
+אתר בית ספר: https://achva.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>נאעורה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://achva.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.39113,32.61468,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אלפורעה اورط الفرعة</name>
+        <description><![CDATA[תיאור: כתובת: דריג'את<br>אתר בית ספר:<br>כתובת: דריג'את<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: דריג'את
+אתר בית ספר:]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[דריג'את]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.07679,31.30188,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אלקסום שש שנתי القيصوم</name>
+        <description><![CDATA[תיאור: כתובת: אלקסום<br>אתר בית ספר:<br>כתובת: אלקסום<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אלקסום
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אלקסום</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.80415,31.24646,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט תראבין مدرسة أورط ترابين الصانع الثانوية</name>
+        <description><![CDATA[תיאור: כתובת: תראבין<br>אתר בית ספר: https://schools.ort.org.il/tarabin/<br>כתובת: תראבין<br>אתר בית ספר: https://schools.ort.org.il/tarabin/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: תראבין
+אתר בית ספר: https://schools.ort.org.il/tarabin/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>תראבין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/tarabin/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.73912,31.34548,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אלסייד טכנולוגי المدرسة الثانوية أورط السيد التكنولوجية الشاملة</name>
+        <description><![CDATA[תיאור: כתובת: אלסייד, חורה<br>אתר בית ספר: https://elsaied.ort.org.il/<br>כתובת: אלסייד, חורה<br>אתר בית ספר: https://elsaied.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אלסייד, חורה
+אתר בית ספר: https://elsaied.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אלסייד, חורה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://elsaied.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.91629,31.28171,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט מולדה مدرسة اورط مولدة الشاملة</name>
+        <description><![CDATA[תיאור: כתובת: מולדה<br>אתר בית ספר: https://molada.ort.org.il/<br>כתובת: מולדה<br>אתר בית ספר: https://molada.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מולדה
+אתר בית ספר: https://molada.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מולדה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://molada.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.97556,31.26107,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>תיכון מקיף חדש אורט אום בטין الثانوية الشاملة الجديدة اورط ام بطين</name>
+        <description><![CDATA[תיאור: כתובת: אום בטין<br>אתר בית ספר: https://oumbatin.ort.org.il/<br>כתובת: אום בטין<br>אתר בית ספר: https://oumbatin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אום בטין
+אתר בית ספר: https://oumbatin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אום בטין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://oumbatin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.88292,31.27674,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אלקנה אורט אולפנת השומרון</name>
+        <description><![CDATA[תיאור: כתובת: בנות ירושלים 2, אלקנה<br>אתר בית ספר: https://ulpenaelkana.ort.org.il/<br>כתובת: בנות ירושלים 2, אלקנה<br>אתר בית ספר: https://ulpenaelkana.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: בנות ירושלים 2, אלקנה
+אתר בית ספר: https://ulpenaelkana.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>בנות ירושלים 2, אלקנה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ulpenaelkana.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.03324,32.11474,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אלקנה אורט ישיבת מערב השומרון (ימה)</name>
+        <description><![CDATA[תיאור: כתובת: עורי צפון 2, אלקנה<br>אתר בית ספר: https://yama.ort.org.il/<br>כתובת: עורי צפון 2, אלקנה<br>אתר בית ספר: https://yama.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: עורי צפון 2, אלקנה
+אתר בית ספר: https://yama.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>עורי צפון 2, אלקנה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yama.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.04029,32.11713,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>קרית חינוך אורט יובלי אריאל</name>
+        <description><![CDATA[תיאור: כתובת: הפיסגה 2, אריאל<br>אתר בית ספר: https://ariel.ort.org.il/<br>כתובת: הפיסגה 2, אריאל<br>אתר בית ספר: https://ariel.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הפיסגה 2, אריאל
+אתר בית ספר: https://ariel.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הפיסגה 2, אריאל</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ariel.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.17561,32.10644,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>בית הספר הטכנולוגי לקציני ים אורט אשדוד עש רוגוזין</name>
+        <description><![CDATA[תיאור: כתובת: אורט 2 אשדוד<br>אתר בית ספר: https://yami-ashdod.ort.org.il/<br>כתובת: אורט 2 אשדוד<br>אתר בית ספר: https://yami-ashdod.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אורט 2 אשדוד
+אתר בית ספר: https://yami-ashdod.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אורט 2 אשדוד</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yami-ashdod.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.64813,31.81512,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אדיבי אשקלון</name>
+        <description><![CDATA[תיאור: כתובת: שדרות עופר 5 אשקלון<br>אתר בית ספר: https://adivi.ort.org.il/<br>כתובת: שדרות עופר 5 אשקלון<br>אתר בית ספר: https://adivi.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שדרות עופר 5 אשקלון
+אתר בית ספר: https://adivi.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שדרות עופר 5 אשקלון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://adivi.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.56829,31.65715,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אפרידר רונסון אשקלון</name>
+        <description><![CDATA[תיאור: כתובת: אורט 11 אשקלון<br>אתר בית ספר: https://afridar.ort.org.il/<br>כתובת: אורט 11 אשקלון<br>אתר בית ספר: https://afridar.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אורט 11 אשקלון
+אתר בית ספר: https://afridar.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אורט 11 אשקלון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://afridar.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.56715,31.6705,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט עש הנרי רונסון</name>
+        <description><![CDATA[תיאור: כתובת: אלי כהן 24 פינת בן-צבי אשקלון<br>אתר בית ספר: https://ronson.ort.org.il/<br>כתובת: אלי כהן 24 פינת בן-צבי אשקלון<br>אתר בית ספר: https://ronson.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אלי כהן 24 פינת בן-צבי אשקלון
+אתר בית ספר: https://ronson.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אלי כהן 24 פינת בן-צבי אשקלון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ronson.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.57045,31.66775,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט בוסתאן אל מארג' المدرسة الشاملة اورط بستان المرج]]></name>
+        <description><![CDATA[תיאור: כתובת: כפר ניין <br>אתר בית ספר: https://bustan.ort.org.il/<br>כתובת: כפר ניין<br>אתר בית ספר: https://bustan.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כפר ניין 
+אתר בית ספר: https://bustan.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כפר ניין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://bustan.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.34939,32.63098,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אולפנת השחר אורט בית שאן</name>
+        <description><![CDATA[תיאור: כתובת: מנחם בגין 26, בית-שאן<br>אתר בית ספר: https://ulpana-bs.ort.org.il/<br>כתובת: מנחם בגין 26, בית-שאן<br>אתר בית ספר: https://ulpana-bs.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מנחם בגין 26, בית-שאן
+אתר בית ספר: https://ulpana-bs.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מנחם בגין 26, בית-שאן</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ulpana-bs.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.50449,32.49515,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אמירים מקיף שש שנתי כללי בית שאן</name>
+        <description><![CDATA[תיאור: כתובת: מוטה גור 66 בית שאן<br>אתר בית ספר: https://sheanklali.ort.org.il/<br>כתובת: מוטה גור 66 בית שאן<br>אתר בית ספר: https://sheanklali.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מוטה גור 66 בית שאן
+אתר בית ספר: https://sheanklali.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מוטה גור 66 בית שאן</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://sheanklali.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.50041,32.49496,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מרכז חינוך טכנולוגי אורט בית שאן</name>
+        <description><![CDATA[תיאור: כתובת: הרב יצחק הכהן קוק 1 בית שאן<br>אתר בית ספר: http://www.bs.ort.org.il/<br>כתובת: הרב יצחק הכהן קוק 1 בית שאן<br>אתר בית ספר: http://www.bs.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הרב יצחק הכהן קוק 1 בית שאן
+אתר בית ספר: http://www.bs.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הרב יצחק הכהן קוק 1 בית שאן</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>http://www.bs.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.49243,32.49651,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט פסגות מקיף דתי שש שנתי בית שאן</name>
+        <description><![CDATA[תיאור: כתובת: שדרות הארבעה בית שאן<br>אתר בית ספר: https://sheandati.ort.org.il/<br>כתובת: שדרות הארבעה בית שאן<br>אתר בית ספר: https://sheandati.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שדרות הארבעה בית שאן
+אתר בית ספר: https://sheandati.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שדרות הארבעה בית שאן</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://sheandati.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.50069,32.49593,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט עטרת רחל בני ברק</name>
+        <description><![CDATA[תיאור: כתובת: אהרונוביץ 33, בני ברק<br>אתר בית ספר:<br>כתובת: אהרונוביץ 33, בני ברק<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אהרונוביץ 33, בני ברק
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אהרונוביץ 33, בני ברק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.83925,32.08905,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט נווה שרה הרצוג אולפנה למדעים ואמנויות</name>
+        <description><![CDATA[תיאור: כתובת: גניחובסקי 8 בני ברק<br>אתר בית ספר: https://neve-sara.ort.org.il/<br>כתובת: גניחובסקי 8 בני ברק<br>אתר בית ספר: https://neve-sara.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: גניחובסקי 8 בני ברק
+אתר בית ספר: https://neve-sara.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>גניחובסקי 8 בני ברק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://neve-sara.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.84253,32.09929,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט בנימינה עש רוטשילד</name>
+        <description><![CDATA[תיאור: כתובת: המסילה 87, אזור תעשייה הצפוני, בנימינה<br>אתר בית ספר: https://binyamina.ort.org.il/<br>כתובת: המסילה 87, אזור תעשייה הצפוני, בנימינה<br>אתר בית ספר: https://binyamina.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: המסילה 87, אזור תעשייה הצפוני, בנימינה
+אתר בית ספר: https://binyamina.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>המסילה 87, אזור תעשייה הצפוני, בנימינה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://binyamina.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.94641,32.48654,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט בסמת טבעון المدرسة الثانوية أورط بسمة طبعون</name>
+        <description><![CDATA[תיאור: כתובת: בסמת טבעון<br>אתר בית ספר: https://basmattivon.ort.org.il/<br>כתובת: בסמת טבעון<br>אתר בית ספר: https://basmattivon.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: בסמת טבעון
+אתר בית ספר: https://basmattivon.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>בסמת טבעון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://basmattivon.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.15319,32.73628,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט רמת יוסף מקיף שש שנתי למצוינות, ערכים ומנהיגות</name>
+        <description><![CDATA[תיאור: כתובת: מבצע סיני 28 ב', בת-ים<br>אתר בית ספר: https://ramatyosef.ort.org.il/<br>כתובת: מבצע סיני 28 ב', בת-ים<br>אתר בית ספר: https://ramatyosef.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: מבצע סיני 28 ב', בת-ים
+אתר בית ספר: https://ramatyosef.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[מבצע סיני 28 ב', בת-ים]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ramatyosef.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.75909,32.01886,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>בית ספר מקיף שש שנתי ומכללה טכנולוגית אורט עש ס. מלטון בת ים</name>
+        <description><![CDATA[תיאור: כתובת: הרב לוי 4, בת ים<br>אתר בית ספר: https://melton.ort.org.il/<br>כתובת: הרב לוי 4, בת ים<br>אתר בית ספר: https://melton.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הרב לוי 4, בת ים
+אתר בית ספר: https://melton.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הרב לוי 4, בת ים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://melton.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.75332,32.01174,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט גבעתיים</name>
+        <description><![CDATA[תיאור: כתובת: גולומב 15 גבעתיים<br>אתר בית ספר: https://givatayim.ort.org.il/<br>כתובת: גולומב 15 גבעתיים<br>אתר בית ספר: https://givatayim.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: גולומב 15 גבעתיים
+אתר בית ספר: https://givatayim.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>גולומב 15 גבעתיים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://givatayim.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.81091,32.06954,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>תיכון ומכללה טכנולוגית אורט חיל האוויר תל נוף</name>
+        <description><![CDATA[תיאור: כתובת: גדרה<br>אתר בית ספר: https://telnof.ort.org.il/<br>כתובת: גדרה<br>אתר בית ספר: https://telnof.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: גדרה
+אתר בית ספר: https://telnof.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>גדרה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://telnof.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.77701,31.8123,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש נעמי שמר גן יבנה]]></name>
+        <description><![CDATA[תיאור: כתובת: בגין 6 גן יבנה<br>אתר בית ספר: https://shemer.ort.org.il/<br>כתובת: בגין 6 גן יבנה<br>אתר בית ספר: https://shemer.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: בגין 6 גן יבנה
+אתר בית ספר: https://shemer.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>בגין 6 גן יבנה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://shemer.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.708,31.79836,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש יצחק רבין גן-יבנה]]></name>
+        <description><![CDATA[תיאור: כתובת: דרך רבין 2 גן יבנה<br>אתר בית ספר: http://www.ganyavne.ort.org.il/<br>כתובת: דרך רבין 2 גן יבנה<br>אתר בית ספר: http://www.ganyavne.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרך רבין 2 גן יבנה
+אתר בית ספר: http://www.ganyavne.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרך רבין 2 גן יבנה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>http://www.ganyavne.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.71917,31.79234,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>כפר נוער ארץ יהודה- אורט זוהרים</name>
+        <description><![CDATA[תיאור: כתובת: כפר זוהרים, קרית גת<br>אתר בית ספר: https://eretzyehuda.ort.org.il/<br>כתובת: כפר זוהרים, קרית גת<br>אתר בית ספר: https://eretzyehuda.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כפר זוהרים, קרית גת
+אתר בית ספר: https://eretzyehuda.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כפר זוהרים, קרית גת</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://eretzyehuda.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.76845,31.61114,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט מתיבתא בית שמש(מושב זנוח)</name>
+        <description><![CDATA[תיאור: כתובת: מושב זנוח, בית שמש<br>אתר בית ספר:<br>כתובת: מושב זנוח, בית שמש<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מושב זנוח, בית שמש
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מושב זנוח, בית שמש</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.99936,31.73381,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט מיטרני, אומנות ויזמות, חולון</name>
+        <description><![CDATA[תיאור: כתובת: שלום עליכם 5 , חולון<br>אתר בית ספר: https://miterani.ort.org.il/<br>כתובת: שלום עליכם 5 , חולון<br>אתר בית ספר: https://miterani.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שלום עליכם 5 , חולון
+אתר בית ספר: https://miterani.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שלום עליכם 5 , חולון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://miterani.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.78428,32.02317,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מקיף אורט חולון למדע וטכנולוגיה</name>
+        <description><![CDATA[תיאור: כתובת: פרופסור שור 2 חולון<br>אתר בית ספר: https://holon.ort.org.il/<br>כתובת: פרופסור שור 2 חולון<br>אתר בית ספר: https://holon.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: פרופסור שור 2 חולון
+אתר בית ספר: https://holon.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>פרופסור שור 2 חולון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://holon.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.78834,32.01851,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט טכנולוגי הכרמל חיפה المدرسة التكنولوجية أورط الكرمل حيفا</name>
+        <description><![CDATA[תיאור: כתובת: התשעים ושלוש (הנזירות) 8 חיפה<br>אתר בית ספר: https://carmel.ort.org.il/<br>כתובת: התשעים ושלוש (הנזירות) 8 חיפה<br>אתר בית ספר: https://carmel.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: התשעים ושלוש (הנזירות) 8 חיפה
+אתר בית ספר: https://carmel.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>התשעים ושלוש (הנזירות) 8 חיפה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://carmel.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.99753,32.81692,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית חינוך אורט ע"ש אברט חצור הגלילית]]></name>
+        <description><![CDATA[תיאור: כתובת: תש"ח, חצור הגלילית<br>אתר בית ספר: https://hazor.ort.org.il/<br>כתובת: תש"ח, חצור הגלילית<br>אתר בית ספר: https://hazor.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: תש"ח, חצור הגלילית
+אתר בית ספר: https://hazor.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[תש"ח, חצור הגלילית]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://hazor.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.53941,32.97859,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אולפנית אורט טבריה</name>
+        <description><![CDATA[תיאור: כתובת: מורן 5, טבריה<br>אתר בית ספר: https://ulpanit.ort.org.il/<br>כתובת: מורן 5, טבריה<br>אתר בית ספר: https://ulpanit.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מורן 5, טבריה
+אתר בית ספר: https://ulpanit.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מורן 5, טבריה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ulpanit.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.52004,32.79997,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[ביה"ס הניסויי למדעים ואומנויות אורט "במעלה" טבריה]]></name>
+        <description><![CDATA[תיאור: כתובת: רח' הנרקיס 38 טבריה<br>אתר בית ספר: https://bamaale.ort.org.il/<br>כתובת: רח' הנרקיס 38 טבריה<br>אתר בית ספר: https://bamaale.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: רח' הנרקיס 38 טבריה
+אתר בית ספר: https://bamaale.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[רח' הנרקיס 38 טבריה]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://bamaale.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.52704,32.78552,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבה תיכונית אורט טבריה</name>
+        <description><![CDATA[תיאור: כתובת: דרך הגבורה, טבריה<br>אתר בית ספר: https://yeshtveria.ort.org.il/<br>כתובת: דרך הגבורה, טבריה<br>אתר בית ספר: https://yeshtveria.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרך הגבורה, טבריה
+אתר בית ספר: https://yeshtveria.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרך הגבורה, טבריה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yeshtveria.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.52908,32.78602,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אורמת יבנה</name>
+        <description><![CDATA[תיאור: כתובת: שידולובסקי 1 יבנה<br>אתר בית ספר: https://ormat.ort.org.il/<br>כתובת: שידולובסקי 1 יבנה<br>אתר בית ספר: https://ormat.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שידולובסקי 1 יבנה
+אתר בית ספר: https://ormat.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שידולובסקי 1 יבנה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ormat.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.73424,31.89112,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט אלון יוקנעם</name>
+        <description><![CDATA[תיאור: כתובת: התמר 10 יוקנעם<br>אתר בית ספר:<br>כתובת: התמר 10 יוקנעם<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: התמר 10 יוקנעם
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>התמר 10 יוקנעם</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.1049,32.6546,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חט"ב לאומנויות ומדעים יקנעם עילית]]></name>
+        <description><![CDATA[תיאור: כתובת: הגיא 5 יקנעם עילית<br>אתר בית ספר: https://alony.ort.org.il/<br>כתובת: הגיא 5 יקנעם עילית<br>אתר בית ספר: https://alony.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הגיא 5 יקנעם עילית
+אתר בית ספר: https://alony.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הגיא 5 יקנעם עילית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://alony.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08068,32.6382,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבת אורט אגדלך, ירושלים</name>
+        <description><![CDATA[תיאור: כתובת: יואל 14 ירושלים<br>אתר בית ספר:<br>כתובת: יואל 14 ירושלים<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: יואל 14 ירושלים
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>יואל 14 ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.22076,31.78982,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט בית הערבה ירושלים</name>
+        <description><![CDATA[תיאור: כתובת: בית הערבה 7 ירושלים<br>אתר בית ספר: https://bethaarava.ort.org.il/<br>כתובת: בית הערבה 7 ירושלים<br>אתר בית ספר: https://bethaarava.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: בית הערבה 7 ירושלים
+אתר בית ספר: https://bethaarava.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>בית הערבה 7 ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://bethaarava.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.22176,31.75016,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט רמות ע"ש גדיש ירושלים]]></name>
+        <description><![CDATA[תיאור: כתובת: רקנטי 29 ירושלים<br>אתר בית ספר: https://ramot.ort.org.il/<br>כתובת: רקנטי 29 ירושלים<br>אתר בית ספר: https://ramot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: רקנטי 29 ירושלים
+אתר בית ספר: https://ramot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>רקנטי 29 ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ramot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.1898,31.81796,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חט"ב אורט מינקוף ירושלים]]></name>
+        <description><![CDATA[תיאור: כתובת: הדישון 25 מלחה ירושלים<br>אתר בית ספר: https://minkof.ort.org.il/<br>כתובת: הדישון 25 מלחה ירושלים<br>אתר בית ספר: https://minkof.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הדישון 25 מלחה ירושלים
+אתר בית ספר: https://minkof.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הדישון 25 מלחה ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://minkof.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.18174,31.75414,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[מכללת אורט גבעת רם – ע"ש יוסף חרמץ]]></name>
+        <description><![CDATA[תיאור: כתובת: האוניברסיטה העברית, קמפוס גבעת רם, ירושלים<br>אתר בית ספר: https://givatram.ort.org.il/<br>כתובת: האוניברסיטה העברית, קמפוס גבעת רם, ירושלים<br>אתר בית ספר: https://givatram.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: האוניברסיטה העברית, קמפוס גבעת רם, ירושלים
+אתר בית ספר: https://givatram.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>האוניברסיטה העברית, קמפוס גבעת רם, ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://givatram.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.19801,31.77356,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט ספניאן ירושלים</name>
+        <description><![CDATA[תיאור: כתובת: דב יוסף 2 ירושלים<br>אתר בית ספר: https://spanian.ort.org.il/<br>כתובת: דב יוסף 2 ירושלים<br>אתר בית ספר: https://spanian.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דב יוסף 2 ירושלים
+אתר בית ספר: https://spanian.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דב יוסף 2 ירושלים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://spanian.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.1988,31.75287,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט כסייפה - אלמותנבי أورط كسيفة المتنبي</name>
+        <description><![CDATA[תיאור: כתובת: כסייפה<br>אתר בית ספר: https://schools-new.ort.org.il/almotanbi/<br>כתובת: כסייפה<br>אתר בית ספר: https://schools-new.ort.org.il/almotanbi/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כסייפה
+אתר בית ספר: https://schools-new.ort.org.il/almotanbi/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כסייפה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools-new.ort.org.il/almotanbi/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08368,31.24924,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט כסייפה - אבו רביעה المدرسة الإعدادية اورط كسيفة أبو ربيعة</name>
+        <description><![CDATA[תיאור: כתובת: שכונה 18 כסייפה<br>אתר בית ספר:<br>כתובת: שכונה 18 כסייפה<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שכונה 18 כסייפה
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שכונה 18 כסייפה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.06968,31.25163,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט כסייפה - אלפארוק مدرسة الفاروق كسيفه</name>
+        <description><![CDATA[תיאור: כתובת: כסייפה<br>אתר בית ספר:<br>כתובת: כסייפה<br>אתר בית ספר: ]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כסייפה
+אתר בית ספר:</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כסייפה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08368,31.24924,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מרכז תורני אורט כפר זיתים</name>
+        <description><![CDATA[תיאור: כתובת: כפר זיתים<br>אתר בית ספר: https://schools.ort.org.il/kfarz/<br>כתובת: כפר זיתים<br>אתר בית ספר: https://schools.ort.org.il/kfarz/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כפר זיתים
+אתר בית ספר: https://schools.ort.org.il/kfarz/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כפר זיתים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/kfarz/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.46516,32.81161,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מדרשית נעם אורט כפר סבא</name>
+        <description><![CDATA[תיאור: כתובת: ד"ר משה סנה 4, כפר סבא<br>אתר בית ספר: https://midrashiatnoam.co.il/<br>כתובת: ד"ר משה סנה 4, כפר סבא<br>אתר בית ספר: https://midrashiatnoam.co.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: ד"ר משה סנה 4, כפר סבא
+אתר בית ספר: https://midrashiatnoam.co.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[ד"ר משה סנה 4, כפר סבא]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://midrashiatnoam.co.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.89672,32.18486,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט שפירא ביה"ס האזורי למנהיגות בתחומי ההנדסה והאמנויות]]></name>
+        <description><![CDATA[תיאור: כתובת: דרך השרון 3 כפר סבא<br>אתר בית ספר: https://shapira.ort.org.il/<br>כתובת: דרך השרון 3 כפר סבא<br>אתר בית ספר: https://shapira.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרך השרון 3 כפר סבא
+אתר בית ספר: https://shapira.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרך השרון 3 כפר סבא</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://shapira.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.89291,32.17379,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[תיכון טכנולוגי ומכללה ע"ש יצחק שמיר, אורט כפר סבא]]></name>
+        <description><![CDATA[תיאור: כתובת: אלקלעי 1 כפר סבא<br>אתר בית ספר: https://shamir.ort.org.il/<br>כתובת: אלקלעי 1 כפר סבא<br>אתר בית ספר: https://shamir.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אלקלעי 1 כפר סבא
+אתר בית ספר: https://shamir.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אלקלעי 1 כפר סבא</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://shamir.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.92375,32.16909,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט כרמים כרמיאל</name>
+        <description><![CDATA[תיאור: כתובת: מעלה אורט 15, כרמיאל<br>אתר בית ספר: https://kramim.ort.org.il/<br>כתובת: מעלה אורט 15, כרמיאל<br>אתר בית ספר: https://kramim.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מעלה אורט 15, כרמיאל
+אתר בית ספר: https://kramim.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מעלה אורט 15, כרמיאל</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://kramim.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.28243,32.91111,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט פסגות ע"ש ברוך ונגר בית ספר על יסודי מקיף ומכללה]]></name>
+        <description><![CDATA[תיאור: כתובת: הפסגה 71, כרמיאל<br>אתר בית ספר: https://psagot.ort.org.il/<br>כתובת: הפסגה 71, כרמיאל<br>אתר בית ספר: https://psagot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הפסגה 71, כרמיאל
+אתר בית ספר: https://psagot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הפסגה 71, כרמיאל</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://psagot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.29607,32.91801,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[ביה"ס הערבי השש שנתי אורט להנדסה ומדעים المدرسة العربية الثانوية للعلوم والهندسة – أورط اللد]]></name>
+        <description><![CDATA[תיאור: כתובת: דוד מזרחי  6 לוד<br>אתר בית ספר: https://lodtech.ort.org.il/<br>כתובת: דוד מזרחי  6 לוד<br>אתר בית ספר: https://lodtech.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דוד מזרחי  6 לוד
+אתר בית ספר: https://lodtech.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דוד מזרחי  6 לוד</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://lodtech.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.81111,31.88441,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט תעשייה אווירית לוד</name>
+        <description><![CDATA[תיאור: כתובת: התעשייה האווירית לישראל, נתב"ג לוד 70100<br>אתר בית ספר: https://iai.ort.org.il/<br>כתובת: התעשייה האווירית לישראל, נתב"ג לוד 70100<br>אתר בית ספר: https://iai.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: התעשייה האווירית לישראל, נתב"ג לוד 70100
+אתר בית ספר: https://iai.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[התעשייה האווירית לישראל, נתב"ג לוד 70100]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://iai.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.90322,32.00498,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[הקריה הרב תחומית אורט לוד ע"ש זייל]]></name>
+        <description><![CDATA[תיאור: כתובת: בן חמו 5, לוד<br>אתר בית ספר: https://lod.ort.org.il/<br>כתובת: בן חמו 5, לוד<br>אתר בית ספר: https://lod.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: בן חמו 5, לוד
+אתר בית ספר: https://lod.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>בן חמו 5, לוד</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://lod.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.88107,31.94103,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[מח"ט אורט פסגות מגדל העמק]]></name>
+        <description><![CDATA[תיאור: כתובת: הגלעד 1 מגדל העמק<br>אתר בית ספר: https://mahatpsagot.ort.org.il/<br>כתובת: הגלעד 1 מגדל העמק<br>אתר בית ספר: https://mahatpsagot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הגלעד 1 מגדל העמק
+אתר בית ספר: https://mahatpsagot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הגלעד 1 מגדל העמק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://mahatpsagot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.24363,32.67375,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט רוגוזין מגדל העמק</name>
+        <description><![CDATA[תיאור: כתובת: הנשיאים מגדל העמק<br>אתר בית ספר: https://rogozin.ort.org.il/<br>כתובת: הנשיאים מגדל העמק<br>אתר בית ספר: https://rogozin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הנשיאים מגדל העמק
+אתר בית ספר: https://rogozin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הנשיאים מגדל העמק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://rogozin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.24443,32.67264,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט עירוני ד' מודיעין]]></name>
+        <description><![CDATA[תיאור: כתובת: עמק חרוד 9 מודיעין<br>אתר בית ספר: https://modiin.ort.org.il/<br>כתובת: עמק חרוד 9 מודיעין<br>אתר בית ספר: https://modiin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: עמק חרוד 9 מודיעין
+אתר בית ספר: https://modiin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>עמק חרוד 9 מודיעין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://modiin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.00311,31.91922,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט צור ברק ג'וליס]]></name>
+        <description><![CDATA[תיאור: כתובת: מחנה עמנואל (ג'וליס לשעבר)<br>אתר בית ספר: https://zurbarak.ort.org.il/<br>כתובת: מחנה עמנואל (ג'וליס לשעבר)<br>אתר בית ספר: https://zurbarak.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: מחנה עמנואל (ג'וליס לשעבר)
+אתר בית ספר: https://zurbarak.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[מחנה עמנואל (ג'וליס לשעבר)]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://zurbarak.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.67592,31.69085,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט דקל וילנאי מעלה אדומים</name>
+        <description><![CDATA[תיאור: כתובת: מדבר יהודה 1 מעלה אדומים<br>אתר בית ספר: https://dekelvilnae.ort.org.il/<br>כתובת: מדבר יהודה 1 מעלה אדומים<br>אתר בית ספר: https://dekelvilnae.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מדבר יהודה 1 מעלה אדומים
+אתר בית ספר: https://dekelvilnae.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מדבר יהודה 1 מעלה אדומים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://dekelvilnae.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.29607,31.77342,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חט"ב אורט תעופה וחלל, מעלה אדומים]]></name>
+        <description><![CDATA[תיאור: כתובת: דרך מדבר יהודה 13 מעלה אדומים<br>אתר בית ספר: https://teufa.ort.org.il/<br>כתובת: דרך מדבר יהודה 13 מעלה אדומים<br>אתר בית ספר: https://teufa.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרך מדבר יהודה 13 מעלה אדומים
+אתר בית ספר: https://teufa.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרך מדבר יהודה 13 מעלה אדומים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://teufa.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.2962,31.77445,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>המכללה הטכנולוגית לתעופה וחלל - אורט מעלה אדומים</name>
+        <description><![CDATA[תיאור: כתובת: דרך קדם 70, מעלה אדומים<br>אתר בית ספר: https://astro.ort.org.il/<br>כתובת: דרך קדם 70, מעלה אדומים<br>אתר בית ספר: https://astro.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרך קדם 70, מעלה אדומים
+אתר בית ספר: https://astro.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרך קדם 70, מעלה אדומים</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://astro.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.31314,31.77823,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבת אורט מעלות</name>
+        <description><![CDATA[תיאור: כתובת: קרן היסוד 1 מעלות<br>אתר בית ספר: https://yeshmaalot.ort.org.il/<br>כתובת: קרן היסוד 1 מעלות<br>אתר בית ספר: https://yeshmaalot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: קרן היסוד 1 מעלות
+אתר בית ספר: https://yeshmaalot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>קרן היסוד 1 מעלות</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yeshmaalot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.28691,33.01456,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מקיף אורט תרשיחא أورط ترشيحا الشاملة</name>
+        <description><![CDATA[תיאור: כתובת: תרשיחא<br>אתר בית ספר: https://tarshiha.ort.org.il/<br>כתובת: תרשיחא<br>אתר בית ספר: https://tarshiha.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: תרשיחא
+אתר בית ספר: https://tarshiha.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>תרשיחא</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://tarshiha.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.27601,33.01502,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[ביה"ס המקיף אורט מעלות]]></name>
+        <description><![CDATA[תיאור: כתובת: שדרות מ"ג המעפילים 1, מעלות<br>אתר בית ספר: https://maalot.ort.org.il/<br>כתובת: שדרות מ"ג המעפילים 1, מעלות<br>אתר בית ספר: https://maalot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: שדרות מ"ג המעפילים 1, מעלות
+אתר בית ספר: https://maalot.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[שדרות מ"ג המעפילים 1, מעלות]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://maalot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.27785,33.01636,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>בית ספר שש שנתי אורט סלאמה أورط (وادي) سلامة, المدرسة سداسية السنوات</name>
+        <description><![CDATA[תיאור: כתובת: כפר ראמה<br>אתר בית ספר: https://sallama.ort.org.il/<br>כתובת: כפר ראמה<br>אתר בית ספר: https://sallama.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כפר ראמה
+אתר בית ספר: https://sallama.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כפר ראמה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://sallama.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.36698,32.93711,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט נווה מדבר אבו תלול  ثانوية أورط أبو تلول</name>
+        <description><![CDATA[תיאור: כתובת: אבו תלול<br>אתר בית ספר: https://abutalul.ort.org.il/<br>כתובת: אבו תלול<br>אתר בית ספר: https://abutalul.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אבו תלול
+אתר בית ספר: https://abutalul.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אבו תלול</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://abutalul.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.91351,31.14261,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>תיכון אורט נווה מדבר אלהואשלה ثانوية أورط الهواشلة</name>
+        <description><![CDATA[תיאור: כתובת: קסר א-סיר<br>אתר בית ספר: https://hauashle.ort.org.il/<br>כתובת: קסר א-סיר<br>אתר בית ספר: https://hauashle.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: קסר א-סיר
+אתר בית ספר: https://hauashle.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>קסר א-סיר</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://hauashle.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.97957,31.08332,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>תיכון אורט נווה מדבר אבו קרינאת ثانوية أورط القرينات</name>
+        <description><![CDATA[תיאור: כתובת: אבו קרינאת<br>אתר בית ספר: https://schools.ort.org.il/bukrinat/<br>כתובת: אבו קרינאת<br>אתר בית ספר: https://schools.ort.org.il/bukrinat/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אבו קרינאת
+אתר בית ספר: https://schools.ort.org.il/bukrinat/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אבו קרינאת</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/bukrinat/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.952,31.10311,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[תיכון אורט נווה מדבר ביר הדאג' ثانوية أورط بير الهداج]]></name>
+        <description><![CDATA[תיאור: כתובת: ביר הדאג<br>אתר בית ספר: https://schools.ort.org.il/beer/<br>כתובת: ביר הדאג<br>אתר בית ספר: https://schools.ort.org.il/beer/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: ביר הדאג
+אתר בית ספר: https://schools.ort.org.il/beer/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>ביר הדאג</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/beer/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.70913,31.02316,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבה תיכונית לחינוך תורני סביבתי אורט נצרת עילית</name>
+        <description><![CDATA[תיאור: כתובת: יקינטון 7, נצרת עלית<br>אתר בית ספר: https://svivaty.ort.org.il/<br>כתובת: יקינטון 7, נצרת עלית<br>אתר בית ספר: https://svivaty.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: יקינטון 7, נצרת עלית
+אתר בית ספר: https://svivaty.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>יקינטון 7, נצרת עלית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://svivaty.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.33594,32.72479,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט יגאל אלון נצרת עילית</name>
+        <description><![CDATA[תיאור: כתובת: שד' מעלה יצחק 27, נצרת עילית<br>אתר בית ספר: https://igalalon.ort.org.il/<br>כתובת: שד' מעלה יצחק 27, נצרת עילית<br>אתר בית ספר: https://igalalon.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: שד' מעלה יצחק 27, נצרת עילית
+אתר בית ספר: https://igalalon.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[שד' מעלה יצחק 27, נצרת עילית]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://igalalon.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.33442,32.70915,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש משה שרת נצרת עילית]]></name>
+        <description><![CDATA[תיאור: כתובת: שד' מעלה יצחק 2, נצרת עילית<br>אתר בית ספר: https://sharet.ort.org.il/<br>כתובת: שד' מעלה יצחק 2, נצרת עילית<br>אתר בית ספר: https://sharet.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: שד' מעלה יצחק 2, נצרת עילית
+אתר בית ספר: https://sharet.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[שד' מעלה יצחק 2, נצרת עילית]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://sharet.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.31644,32.69924,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש גוטמן נתניה]]></name>
+        <description><![CDATA[תיאור: כתובת: ויסלברגר 1, קרית נורדאו, נתניה<br>אתר בית ספר: https://guttman.ort.org.il/<br>כתובת: ויסלברגר 1, קרית נורדאו, נתניה<br>אתר בית ספר: https://guttman.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: ויסלברגר 1, קרית נורדאו, נתניה
+אתר בית ספר: https://guttman.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>ויסלברגר 1, קרית נורדאו, נתניה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://guttman.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.85203,32.28398,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט יד לבוביץ' נתניה]]></name>
+        <description><![CDATA[תיאור: כתובת: פנקס 34, נתניה<br>אתר בית ספר: https://campusylb.ort.org.il/ylb/<br>כתובת: פנקס 34, נתניה<br>אתר בית ספר: https://campusylb.ort.org.il/ylb/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: פנקס 34, נתניה
+אתר בית ספר: https://campusylb.ort.org.il/ylb/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>פנקס 34, נתניה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://campusylb.ort.org.il/ylb/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.8738,32.31753,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[שש שנתי מקיף אורט סאג'ור المدرسة السداسية الصفوف الشاملة أورط ساجور]]></name>
+        <description><![CDATA[תיאור: כתובת: כפר סאג'ור<br>אתר בית ספר: https://sajur.ort.org.il/<br>כתובת: כפר סאג'ור<br>אתר בית ספר: https://sajur.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: כפר סאג'ור
+אתר בית ספר: https://sajur.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[כפר סאג'ור]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://sajur.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.34361,32.9431,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט עוספיה אל שארק أورط عسفيا الأشراق</name>
+        <description><![CDATA[תיאור: כתובת: אבא חושי 1 עוספייה<br>אתר בית ספר: https://aleshrak.ort.org.il/<br>כתובת: אבא חושי 1 עוספייה<br>אתר בית ספר: https://aleshrak.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אבא חושי 1 עוספייה
+אתר בית ספר: https://aleshrak.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אבא חושי 1 עוספייה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://aleshrak.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.06783,32.71202,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט רונסון עוספיה أورط رونسون- قرية عسفيا</name>
+        <description><![CDATA[תיאור: כתובת: עוספייה<br>אתר בית ספר: https://ronsonc.ort.org.il/<br>כתובת: עוספייה<br>אתר בית ספר: https://ronsonc.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: עוספייה
+אתר בית ספר: https://ronsonc.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>עוספייה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ronsonc.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.05908,32.72073,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית החינוך אורט עכו ע"ש דרסקי]]></name>
+        <description><![CDATA[תיאור: כתובת: סימטת אבות ובנים 2 עכו<br>אתר בית ספר: https://darski.ort.org.il/<br>כתובת: סימטת אבות ובנים 2 עכו<br>אתר בית ספר: https://darski.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: סימטת אבות ובנים 2 עכו
+אתר בית ספר: https://darski.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>סימטת אבות ובנים 2 עכו</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://darski.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.07495,32.93314,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט עכו מרכז חינוך טכנולוגי أورط عكا- مركز تعلم تكنولوجي</name>
+        <description><![CDATA[תיאור: כתובת: שני אליהו 5 עכו<br>אתר בית ספר: https://akkot.ort.org.il/<br>כתובת: שני אליהו 5 עכו<br>אתר בית ספר: https://akkot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שני אליהו 5 עכו
+אתר בית ספר: https://akkot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שני אליהו 5 עכו</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://akkot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.07008,32.92667,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>התיכון הטכנולוגי אורט מרום עכו</name>
+        <description><![CDATA[תיאור: כתובת: אריה דושניצקי 2 עכו<br>אתר בית ספר: https://acotech.ort.org.il/<br>כתובת: אריה דושניצקי 2 עכו<br>אתר בית ספר: https://acotech.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אריה דושניצקי 2 עכו
+אתר בית ספר: https://acotech.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אריה דושניצקי 2 עכו</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://acotech.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08849,32.93257,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט מקיף ע"ש חילמי שאפעי أورط الشاملة على اسم حلمي الشافعي- عكا]]></name>
+        <description><![CDATA[תיאור: כתובת: שני אליהו 7 עכו<br>אתר בית ספר: https://hilmi.ort.org.il/<br>כתובת: שני אליהו 7 עכו<br>אתר בית ספר: https://hilmi.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שני אליהו 7 עכו
+אתר בית ספר: https://hilmi.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שני אליהו 7 עכו</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://hilmi.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.07026,32.92661,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבת דרך הישר אורט אורייתא</name>
+        <description><![CDATA[תיאור: כתובת: הבריגדה היהודית 13 עפולה עילית<br>אתר בית ספר: http://orayta1.blogspot.com/<br>כתובת: הבריגדה היהודית 13 עפולה עילית<br>אתר בית ספר: http://orayta1.blogspot.com/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הבריגדה היהודית 13 עפולה עילית
+אתר בית ספר: http://orayta1.blogspot.com/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הבריגדה היהודית 13 עפולה עילית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>http://orayta1.blogspot.com/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.3257,32.62042,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית חינוך אורט עפולה-חט"ע]]></name>
+        <description><![CDATA[תיאור: כתובת: מגשימים 3 עפולה עילית<br>אתר בית ספר: https://afula.ort.org.il/<br>כתובת: מגשימים 3 עפולה עילית<br>אתר בית ספר: https://afula.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: מגשימים 3 עפולה עילית
+אתר בית ספר: https://afula.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>מגשימים 3 עפולה עילית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://afula.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.32111,32.62747,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית חינוך אורט עפולה-חט"ב אלון]]></name>
+        <description><![CDATA[תיאור: כתובת: האגס 4 עפולה<br>אתר בית ספר: https://afulaalon.ort.org.il/<br>כתובת: האגס 4 עפולה<br>אתר בית ספר: https://afulaalon.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: האגס 4 עפולה
+אתר בית ספר: https://afulaalon.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>האגס 4 עפולה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://afulaalon.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.28782,32.61762,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית חינוך אורט עפולה-חט"ב אורן]]></name>
+        <description><![CDATA[תיאור: כתובת: המגשימים 3 עפולה עילית<br>אתר בית ספר: https://orenafula.ort.org.il/<br>כתובת: המגשימים 3 עפולה עילית<br>אתר בית ספר: https://orenafula.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: המגשימים 3 עפולה עילית
+אתר בית ספר: https://orenafula.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>המגשימים 3 עפולה עילית</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://orenafula.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.32111,32.62747,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ערד ע"ש צימטבאום]]></name>
+        <description><![CDATA[תיאור: כתובת: יאשיהו 2 ערד<br>אתר בית ספר: https://arad.ort.org.il/<br>כתובת: יאשיהו 2 ערד<br>אתר בית ספר: https://arad.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: יאשיהו 2 ערד
+אתר בית ספר: https://arad.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>יאשיהו 2 ערד</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://arad.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.21505,31.26168,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט צור ערד</name>
+        <description><![CDATA[תיאור: כתובת: יאשיהו 4 ערד<br>אתר בית ספר: https://tzurarad.ort.org.il/<br>כתובת: יאשיהו 4 ערד<br>אתר בית ספר: https://tzurarad.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: יאשיהו 4 ערד
+אתר בית ספר: https://tzurarad.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>יאשיהו 4 ערד</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://tzurarad.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.21478,31.26206,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[מכון חסידי טכנולוגי – אורט חב"ד צפת]]></name>
+        <description><![CDATA[תיאור: כתובת: אזור התעשיה דרומי - צפת<br>אתר בית ספר: https://schools.ort.org.il/habad/<br>כתובת: אזור התעשיה דרומי - צפת<br>אתר בית ספר: https://schools.ort.org.il/habad/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אזור התעשיה דרומי - צפת
+אתר בית ספר: https://schools.ort.org.il/habad/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אזור התעשיה דרומי - צפת</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/habad/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.49901,32.95964,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט צריפין מנהל טכני ואומנויות הבישול</name>
+        <description><![CDATA[תיאור: כתובת: צריפין<br>אתר בית ספר: https://ortlaaoc.ort.org.il/<br>כתובת: צריפין<br>אתר בית ספר: https://ortlaaoc.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: צריפין
+אתר בית ספר: https://ortlaaoc.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>צריפין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ortlaaoc.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.84056,31.95732,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>קרית החינוך אורט קרית ביאליק</name>
+        <description><![CDATA[תיאור: כתובת: ניר עם 1 קריית ביאליק<br>אתר בית ספר: https://bialik.ort.org.il/<br>כתובת: ניר עם 1 קריית ביאליק<br>אתר בית ספר: https://bialik.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: ניר עם 1 קריית ביאליק
+אתר בית ספר: https://bialik.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>ניר עם 1 קריית ביאליק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://bialik.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.0762,32.81308,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>חטיבת הביניים אורט אפק קרית ביאליק</name>
+        <description><![CDATA[תיאור: כתובת: דרור 6 קריית ביאליק<br>אתר בית ספר: https://afek.ort.org.il/<br>כתובת: דרור 6 קריית ביאליק<br>אתר בית ספר: https://afek.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דרור 6 קריית ביאליק
+אתר בית ספר: https://afek.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דרור 6 קריית ביאליק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://afek.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.09286,32.84826,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>חטיבת הביניים אורט דפנה קרית ביאליק</name>
+        <description><![CDATA[תיאור: כתובת: הדפנה 54, קרית ביאליק<br>אתר בית ספר: https://dafna.ort.org.il/<br>כתובת: הדפנה 54, קרית ביאליק<br>אתר בית ספר: https://dafna.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הדפנה 54, קרית ביאליק
+אתר בית ספר: https://dafna.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הדפנה 54, קרית ביאליק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://dafna.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.09038,32.83315,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קריית חינוך ומכללה למצוינות מדעית וטכנולוגית - אורט ע"ש רוגוזין -בוים]]></name>
+        <description><![CDATA[תיאור: כתובת: אהוד בן גרא 9, קרית גת<br>אתר בית ספר: https://schools-new.ort.org.il/boim/<br>כתובת: אהוד בן גרא 9, קרית גת<br>אתר בית ספר: https://schools-new.ort.org.il/boim/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: אהוד בן גרא 9, קרית גת
+אתר בית ספר: https://schools-new.ort.org.il/boim/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>אהוד בן גרא 9, קרית גת</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools-new.ort.org.il/boim/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.76449,31.61576,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט קרית גת- מח"ט]]></name>
+        <description><![CDATA[תיאור: כתובת: הברוש 43, קרית גת<br>אתר בית ספר: https://kiryatgat.ort.org.il/<br>כתובת: הברוש 43, קרית גת<br>אתר בית ספר: https://kiryatgat.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הברוש 43, קרית גת
+אתר בית ספר: https://kiryatgat.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הברוש 43, קרית גת</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://kiryatgat.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.77761,31.60838,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[בית הספר המקיף ע"ש גרינברג, אורט קרית טבעון]]></name>
+        <description><![CDATA[תיאור: כתובת: כצנלסון 1 קרית טבעון<br>אתר בית ספר: https://tivon.ort.org.il/<br>כתובת: כצנלסון 1 קרית טבעון<br>אתר בית ספר: https://tivon.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: כצנלסון 1 קרית טבעון
+אתר בית ספר: https://tivon.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>כצנלסון 1 קרית טבעון</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://tivon.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.1228,32.70739,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>קרית חינוך אורט מוצקין</name>
+        <description><![CDATA[תיאור: כתובת: שדרות בן-גוריון 78 קריית-מוצקין<br>אתר בית ספר: https://motzkin.ort.org.il/<br>כתובת: שדרות בן-גוריון 78 קריית-מוצקין<br>אתר בית ספר: https://motzkin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שדרות בן-גוריון 78 קריית-מוצקין
+אתר בית ספר: https://motzkin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שדרות בן-גוריון 78 קריית-מוצקין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://motzkin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08283,32.83918,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חט"ב אורט ע"ש יצחק רבין קרית מוצקין]]></name>
+        <description><![CDATA[תיאור: כתובת: דקר 11 קרית מוצקין<br>אתר בית ספר: https://motzkinr.ort.org.il/<br>כתובת: דקר 11 קרית מוצקין<br>אתר בית ספר: https://motzkinr.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דקר 11 קרית מוצקין
+אתר בית ספר: https://motzkinr.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דקר 11 קרית מוצקין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://motzkinr.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08399,32.84318,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[חטיבת הביניים ע"ש "יונתן נתניהו" אורט מוצקין]]></name>
+        <description><![CDATA[תיאור: כתובת: דקר 11, קריית-מוצקין<br>אתר בית ספר: https://yonatanmo.ort.org.il/<br>כתובת: דקר 11, קריית-מוצקין<br>אתר בית ספר: https://yonatanmo.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: דקר 11, קריית-מוצקין
+אתר בית ספר: https://yonatanmo.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>דקר 11, קריית-מוצקין</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yonatanmo.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.08399,32.84318,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[קרית החינוך אורט רחובות ע"ש שיין]]></name>
+        <description><![CDATA[תיאור: כתובת: טשרניחובסקי 1 רחובות<br>אתר בית ספר: https://rehovot.ort.org.il/<br>כתובת: טשרניחובסקי 1 רחובות<br>אתר בית ספר: https://rehovot.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: טשרניחובסקי 1 רחובות
+אתר בית ספר: https://rehovot.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>טשרניחובסקי 1 רחובות</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://rehovot.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.81248,31.88099,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט קריית האומנים ע"ש זאב ביסטריצקי רמלה]]></name>
+        <description><![CDATA[תיאור: כתובת: יוסי בנאי 56, קריית האמנים, רמלה<br>אתר בית ספר: https://omanim.ort.org.il/<br>כתובת: יוסי בנאי 56, קריית האמנים, רמלה<br>אתר בית ספר: https://omanim.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: יוסי בנאי 56, קריית האמנים, רמלה
+אתר בית ספר: https://omanim.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>יוסי בנאי 56, קריית האמנים, רמלה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://omanim.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.87612,31.91289,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט מקיף ערבי רמלה أورط العربية الشاملة رملة</name>
+        <description><![CDATA[תיאור: כתובת: חשמונאים 1 רמלה<br>אתר בית ספר: https://schools.ort.org.il/mekif/<br>כתובת: חשמונאים 1 רמלה<br>אתר בית ספר: https://schools.ort.org.il/mekif/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: חשמונאים 1 רמלה
+אתר בית ספר: https://schools.ort.org.il/mekif/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>חשמונאים 1 רמלה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://schools.ort.org.il/mekif/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.87027,31.93791,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש לילנטל רמלה]]></name>
+        <description><![CDATA[תיאור: כתובת: א.ס. לוי 12 רמלה<br>אתר בית ספר: https://lilienthal.ort.org.il/<br>כתובת: א.ס. לוי 12 רמלה<br>אתר בית ספר: https://lilienthal.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: א.ס. לוי 12 רמלה
+אתר בית ספר: https://lilienthal.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>א.ס. לוי 12 רמלה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://lilienthal.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.85778,31.92319,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט ע"ש אבין ר"ג]]></name>
+        <description><![CDATA[תיאור: כתובת: שלם 1 רמת גן<br>אתר בית ספר: https://ebin.ort.org.il/<br>כתובת: שלם 1 רמת גן<br>אתר בית ספר: https://ebin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: שלם 1 רמת גן
+אתר בית ספר: https://ebin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>שלם 1 רמת גן</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ebin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.81292,32.05345,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ישיבת אורט שלהבת שוהם</name>
+        <description><![CDATA[תיאור: כתובת: תירוש 1 שוהם<br>אתר בית ספר: https://yshalhevet.ort.org.il/<br>כתובת: תירוש 1 שוהם<br>אתר בית ספר: https://yshalhevet.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: תירוש 1 שוהם
+אתר בית ספר: https://yshalhevet.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>תירוש 1 שוהם</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://yshalhevet.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.95023,32.00853,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אולפנת אורט שלהבת שוהם</name>
+        <description><![CDATA[תיאור: כתובת: תירוש 1 שוהם<br>אתר בית ספר: https://ushalhevet.ort.org.il/<br>כתובת: תירוש 1 שוהם<br>אתר בית ספר: https://ushalhevet.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: תירוש 1 שוהם
+אתר בית ספר: https://ushalhevet.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>תירוש 1 שוהם</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ushalhevet.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.95023,32.00853,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט שלומי ע"ש אספנדי אייזקס]]></name>
+        <description><![CDATA[תיאור: כתובת: ז'בוטינסקי 1 שלומי<br>אתר בית ספר: https://shlomi.ort.org.il/<br>כתובת: ז'בוטינסקי 1 שלומי<br>אתר בית ספר: https://shlomi.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: ז'בוטינסקי 1 שלומי
+אתר בית ספר: https://shlomi.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[ז'בוטינסקי 1 שלומי]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://shlomi.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.14293,33.07407,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט יד סינגאלובסקי, ת"א]]></name>
+        <description><![CDATA[תיאור: כתובת: דרך הטייסים 28, ת"א<br>אתר בית ספר: https://singalovski.ort.org.il/<br>כתובת: דרך הטייסים 28, ת"א<br>אתר בית ספר: https://singalovski.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: דרך הטייסים 28, ת"א
+אתר בית ספר: https://singalovski.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[דרך הטייסים 28, ת"א]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://singalovski.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.80519,32.057012,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[אורט גאולה, ת"א]]></name>
+        <description><![CDATA[תיאור: כתובת: גאולה 30 ת"א<br>אתר בית ספר: https://geula.ort.org.il/<br>כתובת: גאולה 30 ת"א<br>אתר בית ספר: https://geula.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: גאולה 30 ת"א
+אתר בית ספר: https://geula.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[גאולה 30 ת"א]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://geula.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.767877,32.071297,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט רחובות</name>
+        <description><![CDATA[תיאור: כתובת: טשרניחובסקי 1 רחובות<br>אתר בית ספר: https://crehovot.ort.org.il<br>כתובת: טשרניחובסקי 1 רחובות<br>אתר בית ספר: https://crehovot.ort.org.il]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: טשרניחובסקי 1 רחובות
+אתר בית ספר: https://crehovot.ort.org.il</value>
+          </Data>
+          <Data name="כתובת">
+            <value>טשרניחובסקי 1 רחובות</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://crehovot.ort.org.il</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.81248,31.88099,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט קרית ביאליק</name>
+        <description><![CDATA[תיאור: כתובת: ניר עם 3, קרית ביאליק<br>אתר בית ספר: https://kb.ort.org.il/<br>כתובת: ניר עם 3, קרית ביאליק<br>אתר בית ספר: https://kb.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: ניר עם 3, קרית ביאליק
+אתר בית ספר: https://kb.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>ניר עם 3, קרית ביאליק</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://kb.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.07578,32.81327,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט סינגאלובסקי</name>
+        <description><![CDATA[תיאור: כתובת: דרך הטייסים 28, ת"א<br>אתר בית ספר: https://s.ort.org.il/<br>כתובת: דרך הטייסים 28, ת"א<br>אתר בית ספר: https://s.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value><![CDATA[כתובת: דרך הטייסים 28, ת"א
+אתר בית ספר: https://s.ort.org.il/]]></value>
+          </Data>
+          <Data name="כתובת">
+            <value><![CDATA[דרך הטייסים 28, ת"א]]></value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://s.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.80277,32.0553,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט כפר סבא</name>
+        <description><![CDATA[תיאור: כתובת: השרון 3 כפר סבא<br>אתר בית ספר: https://ks.ort.org.il/<br>כתובת: השרון 3 כפר סבא<br>אתר בית ספר: https://ks.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: השרון 3 כפר סבא
+אתר בית ספר: https://ks.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>השרון 3 כפר סבא</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://ks.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.89374,32.17555,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט ירושלים‎</name>
+        <description><![CDATA[תיאור: כתובת: הנביאים 42 ירושלים‎‎<br>אתר בית ספר: https://joc.ort.org.il/<br>כתובת: הנביאים 42 ירושלים‎‎<br>אתר בית ספר: https://joc.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: הנביאים 42 ירושלים‎‎
+אתר בית ספר: https://joc.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>הנביאים 42 ירושלים‎‎</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://joc.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.22273,31.78392,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>מכללת אורט הרמלין להנדסאים</name>
+        <description><![CDATA[תיאור: כתובת: המחקר 2 נתניה<br>אתר בית ספר: https://hermelin.ort.org.il/<br>כתובת: המחקר 2 נתניה<br>אתר בית ספר: https://hermelin.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: המחקר 2 נתניה
+אתר בית ספר: https://hermelin.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>המחקר 2 נתניה</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://hermelin.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            34.86419,32.29134,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>אורט בראודה המכללה הטכנולוגית להנדסאים</name>
+        <description><![CDATA[תיאור: כתובת: סנונית 51 כרמיאל<br>אתר בית ספר: https://braude.ort.org.il/<br>כתובת: סנונית 51 כרמיאל<br>אתר בית ספר: https://braude.ort.org.il/]]></description>
+        <styleUrl>#icon-1899-DB4436</styleUrl>
+        <ExtendedData>
+          <Data name="תיאור">
+            <value>כתובת: סנונית 51 כרמיאל
+אתר בית ספר: https://braude.ort.org.il/</value>
+          </Data>
+          <Data name="כתובת">
+            <value>סנונית 51 כרמיאל</value>
+          </Data>
+          <Data name="אתר בית ספר">
+            <value>https://braude.ort.org.il/</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            35.28243,32.91435,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
