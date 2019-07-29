@@ -19,8 +19,9 @@ jQuery(document).ready(function ($) {
     var btnEnableMap = $('.elementor-button');
     var mapElement = $('#map');
     var clsSearhedSchooMark = "searched-school-mark";
+    var searhedSchoolMarkTagBegin = '<span class="' + clsSearhedSchooMark + '">';
+    var searhedSchoolMarkTagEnd = '</span>';
     var mediumSpeed = 2000;
-    var highSpeed = 100;
     var map, geocoder, kmlLayer, infowindow, marker;
     var mapIsReset = true;
     var infoWindowWrapperClass = 'info_window_wrapper';
@@ -32,10 +33,10 @@ jQuery(document).ready(function ($) {
     /* When a user types, or focuses in the text input call the filterSchools function. */
 
     fieldSearchSchools.on('keyup', function (e) {
-        return filterSchools($(e.target));
+        return filterSchools(e);
     });
     fieldSearchSchools.on('focus', function (e) {
-        return schoolsFilterTextFocusHandler($(e.target));
+        return schoolsFilterTextFocusHandler(e);
     });
     cityNameElements.on('click', function (e) {
         if (mapStaticImage.is(":visible")) {
@@ -70,9 +71,10 @@ jQuery(document).ready(function ($) {
      * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
 
-    function filterSchools(searchField) {
+    function filterSchools(event) {
         var citiesToShow = [];
-        var elementorAccordionItems = $('.elementor-accordion-item'); // First show all accordion items because some of them might have been hidden by previous search.
+        var elementorAccordionItems = $('.elementor-accordion-item');
+        var searchValue = $(event.target).val(); // First show all accordion items because some of them might have been hidden by previous search.
 
         elementorAccordionItems.show().each(function () {
             var currentCitySchools = $(this).find('.elementor-tab-content li'); // now show all schools (because some of them might have been hidden by previous search)
@@ -80,7 +82,6 @@ jQuery(document).ready(function ($) {
             currentCitySchools.show();
             currentCitySchools.toArray().some(function (school) {
                 var currSchool = $(school);
-                var searchValue = searchField.val();
                 currSchool.html(removeMarkTheSearchedValue(currSchool));
 
                 if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
@@ -102,7 +103,7 @@ jQuery(document).ready(function ($) {
                 }
             }); // If the city does match the searched value, turn on the doesItemCityHaveValue flag to leave it showing.*/
 
-            if (currCityName.indexOf(searchField.val()) > -1) {
+            if (currCityName.indexOf(searchValue) > -1) {
                 doesItemCityHaveValue = true;
             }
             /* Hide all accordion items whose cities don't contain the searched value and who don't have a school that contains that value*/
@@ -113,30 +114,24 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Make the searched value stand out in the schoo name
-     * @param stringToMark
-     * @param startMark
-     * @param markLength
-     * @returns {string}
+     * Make the searched value stand out in the school name
      */
-
-
-    function markTheSearchedValue(stringToMark, startMark, markLength) {
-        return stringToMark.slice(0, startMark) + '<span class="' + clsSearhedSchooMark + '">' + stringToMark.slice(startMark, startMark + markLength) + '</span>' + stringToMark.slice(startMark + markLength);
+    function markTheSearchedValue(stringToMark, startMarkPos, markLength) {
+        return stringToMark.slice(0, startMarkPos) + searhedSchoolMarkTagBegin + stringToMark.slice(startMarkPos, startMarkPos + markLength) + searhedSchoolMarkTagEnd + stringToMark.slice(startMarkPos + markLength);
     }
 
     /**
      * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
-     * @param stringToRemoveMark
-     * @returns {string}
+     * @param elementToRemoveMark
+     * @returns the element without the mark
      */
 
 
-    function removeMarkTheSearchedValue(stringToRemoveMark) {
-        var ret = stringToRemoveMark.html();
+    function removeMarkTheSearchedValue(elementToRemoveMark) {
+        var ret = elementToRemoveMark.html();
 
-        if (stringToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
-            ret = stringToRemoveMark.html().replace('<span class="' + clsSearhedSchooMark + '">', '').replace('</span>', '');
+        if (elementToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
+            ret = elementToRemoveMark.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, '');
         }
 
         return ret;
@@ -147,15 +142,15 @@ jQuery(document).ready(function ($) {
      * 1. The map should go back to initial state
      * 2. The cities and schools should be filtered acoording to whatever input is in the text box
      * 3. Any markers showing on the map should be closed
-     * @param self - $('#schools_filter_text')
+     * @param event
      */
 
 
-    function schoolsFilterTextFocusHandler(self) {
+    function schoolsFilterTextFocusHandler(event) {
         // return map to original bounds and size
         resetMap(); // filter the schools
 
-        filterSchools(self); // close any open markers and infowindows
+        filterSchools(event); // close any open markers and infowindows
 
         closeClickHandler();
     }
@@ -278,7 +273,7 @@ jQuery(document).ready(function ($) {
 
                         if (cityExists.length === 0) {
                             // hide it
-                            elementorAccordionItem.hide(highSpeed);
+                            elementorAccordionItem.hide();
                         } // if the city appears - make it show (needed on zoom out, to return the cities previously hidden)
                         else {
                             /* The value is the cityNameLinkElement
@@ -298,7 +293,7 @@ jQuery(document).ready(function ($) {
      * Get an array of cities that appear in the map after its bounds have changed
      * @param cityFilecontents - the cities that we stored in our json file, including their geocode data
      * @param mapBounds - the bounds of the map after change
-     * @returns array of cities that appear in the map
+     * @returns the city that appears in the map, or nothing of city doesn't appear in the map
      */
 
 
@@ -373,10 +368,13 @@ jQuery(document).ready(function ($) {
 
 
     function cityClickedHandler(self) {
-        /* Give the current item a class so we know if it's open or closed.
-        * We give the class to the parent, elementor-accordion-item */
-        // shut off the other cities
         var accordionItem = self.parents('.elementor-accordion-item');
+        /* If city is open but doesn't have a cityOpen class,
+        identify it by the elementor-active class that its elementor-tab-content has.
+         This happens when one of cities is displayed open by default when the accordion loads */
+        if (accordionItem.children('.elementor-active').length > 0) {
+            accordionItem.addClass('cityOpen');
+        }
 
         if (accordionItem.siblings().hasClass('cityOpen')) {
             accordionItem.siblings().removeClass('cityOpen');
@@ -447,8 +445,7 @@ jQuery(document).ready(function ($) {
     function updateCitiesFile() {
         if (schools_and_map_filter_ajax_obj.is_user_admin) {
             $.getJSON("".concat(schools_and_map_filter_ajax_obj.json_file, "?ver=").concat(Date.now()), function (data) {
-                var isThereANewCity = false; // filter out cities that don't appear in bounds
-
+                // filter out cities that don't appear in bounds
                 cityNameLinkElements.each(function (key, cityElement) {
                     // if the innerHTML, which is the city name, doesn't exist in the list of filtered cities, hide it
                     var cityExists = data.filter(function (item) {
@@ -580,15 +577,15 @@ jQuery(document).ready(function ($) {
             try {
                 for (var _iterator = infoArr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var infoData = _step.value;
-                    var tmp = decodeURI(encodeURI(infoData).replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
+                    var info = decodeURI(encodeURI(infoData).replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
                         .replace(label, "").replace(schools_and_map_filter_ajax_obj.strMarkerDescription, "").replace(/target="_blank"/g, "").trim();
 
-                    if (ret.indexOf(tmp) === -1) {
+                    if (ret.indexOf(info) === -1) {
                         if (ret !== "") {
                             ret += ", ";
                         }
 
-                        ret += tmp;
+                        ret += info;
                     }
                 }
             } catch (err) {
@@ -649,9 +646,7 @@ jQuery(document).ready(function ($) {
     }
 
     /**
-     * Wrap the strng with a div, and add the title wrapped in a span with class.
-     * @param title
-     * @param str
+     * Wrap the string with a div, and add the title wrapped in a span with class.
      * @returns {string} - str + title in HTML tags
      */
 
@@ -758,6 +753,7 @@ jQuery(document).ready(function ($) {
      * taken from here:
      * https://stackoverflow.com/a/20683311/278
      */
+
 
     function bodyCssChange() {
         // Select the node that will be observed for mutations
