@@ -59,8 +59,6 @@ jQuery(document).ready(function ($) {
 
     /**
      * Show and hide cities and schools according to the value entered in the text input.
-     * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
-     * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
     function filterSchools(event) {
         let citiesToShow = [];
