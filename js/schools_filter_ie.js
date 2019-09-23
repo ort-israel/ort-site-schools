@@ -2,7 +2,7 @@
 
 function _instanceof(left, right) {
     if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
-        return right[Symbol.hasInstance](left);
+        return !!right[Symbol.hasInstance](left);
     } else {
         return left instanceof right;
     }
@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
     var btnEnableMap = $('.elementor-button');
     var mapElement = $('#map');
     var clsSearhedSchooMark = "searched-school-mark";
-    var searhedSchoolMarkTagBegin = '<span class="' + clsSearhedSchooMark + '">';
+    var searhedSchoolMarkTagBegin = "<span class=\"".concat(clsSearhedSchooMark, "\">");
     var searhedSchoolMarkTagEnd = '</span>';
     var mediumSpeed = 2000;
     var map, geocoder, kmlLayer, infowindow, marker;
@@ -67,8 +67,6 @@ jQuery(document).ready(function ($) {
 
     /**
      * Show and hide cities and schools according to the value entered in the text input.
-     * The logic of looking up the text from the search in the city names using a Regular Expression is taken from:
-     * https://stackoverflow.com/questions/27096548/filter-by-search-using-text-found-in-element-within-each-div/27096842#27096842
      */
 
     function filterSchools(event) {
@@ -82,10 +80,10 @@ jQuery(document).ready(function ($) {
             currentCitySchools.show();
             currentCitySchools.toArray().some(function (school) {
                 var currSchool = $(school);
-                currSchool.html(removeMarkTheSearchedValue(currSchool));
+                currSchool.html(currSchool.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, ''));
 
                 if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
-                    currSchool.html(markTheSearchedValue(currSchool.html(), currSchool.html().indexOf(searchValue), searchValue.length));
+                    currSchool.html(currSchool.html().replace(searchValue, searhedSchoolMarkTagBegin + searchValue + searhedSchoolMarkTagEnd));
                     citiesToShow.push(currSchool.parents('.elementor-accordion-item'));
                 }
             });
@@ -111,30 +109,6 @@ jQuery(document).ready(function ($) {
                 $(this).hide();
             }
         });
-    }
-
-    /**
-     * Make the searched value stand out in the school name
-     */
-    function markTheSearchedValue(stringToMark, startMarkPos, markLength) {
-        return stringToMark.slice(0, startMarkPos) + searhedSchoolMarkTagBegin + stringToMark.slice(startMarkPos, startMarkPos + markLength) + searhedSchoolMarkTagEnd + stringToMark.slice(startMarkPos + markLength);
-    }
-
-    /**
-     * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
-     * @param elementToRemoveMark
-     * @returns the element without the mark
-     */
-
-
-    function removeMarkTheSearchedValue(elementToRemoveMark) {
-        var ret = elementToRemoveMark.html();
-
-        if (elementToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
-            ret = elementToRemoveMark.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, '');
-        }
-
-        return ret;
     }
 
     /**

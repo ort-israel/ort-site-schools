@@ -10,7 +10,7 @@ jQuery(document).ready(function ($) {
     let btnEnableMap = $('.elementor-button');
     let mapElement = $('#map');
     let clsSearhedSchooMark = "searched-school-mark";
-    let searhedSchoolMarkTagBegin = '<span class="' + clsSearhedSchooMark + '">';
+    let searhedSchoolMarkTagBegin = `<span class="${clsSearhedSchooMark}">`;
     let searhedSchoolMarkTagEnd = '</span>';
     let mediumSpeed = 2000;
     let map, geocoder, kmlLayer, infowindow, marker;
@@ -74,10 +74,10 @@ jQuery(document).ready(function ($) {
             currentCitySchools.toArray().some(school => {
                 let currSchool = $(school);
 
-                currSchool.html(removeMarkTheSearchedValue(currSchool));
+                currSchool.html(currSchool.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, ''));
 
                 if (searchValue.length > 0 && currSchool.text().indexOf(searchValue) > -1) {
-                    currSchool.html(markTheSearchedValue(currSchool.html(), currSchool.html().indexOf(searchValue), searchValue.length));
+                    currSchool.html(currSchool.html().replace(searchValue, searhedSchoolMarkTagBegin + searchValue + searhedSchoolMarkTagEnd));
                     citiesToShow.push(currSchool.parents('.elementor-accordion-item'));
                 }
             });
@@ -105,30 +105,6 @@ jQuery(document).ready(function ($) {
                 $(this).hide();
             }
         });
-    }
-
-    /**
-     * Make the searched value stand out in the school name
-     */
-    function markTheSearchedValue(stringToMark, startMarkPos, markLength) {
-        return stringToMark.slice(0, startMarkPos)
-            + searhedSchoolMarkTagBegin
-            + stringToMark.slice(startMarkPos, startMarkPos + markLength)
-            + searhedSchoolMarkTagEnd
-            + stringToMark.slice(startMarkPos + markLength);
-    }
-
-    /**
-     * Remove the searched value mark every time a new search is run, otherwise the mark interferes with the search
-     * @param elementToRemoveMark
-     * @returns the element without the mark
-     */
-    function removeMarkTheSearchedValue(elementToRemoveMark) {
-        let ret = elementToRemoveMark.html();
-        if (elementToRemoveMark.find('.' + clsSearhedSchooMark).length > 0) {
-            ret = elementToRemoveMark.html().replace(searhedSchoolMarkTagBegin, '').replace(searhedSchoolMarkTagEnd, '');
-        }
-        return ret;
     }
 
     /**
