@@ -17,6 +17,9 @@ jQuery(document).ready(function ($) {
     let mapIsReset = true;
     let infoWindowWrapperClass = 'info_window_wrapper';
     let elementToWatchForAccessibility = "page";
+    let centerLat = 32;
+    let centerLong = 36.474776492187516;
+    let zoomValue = 4; // With kmz layer zoom 8 is good. Without it, 4 is needed as 8 is too close
 
     /**********************************
      ************* EVENTS *************
@@ -160,9 +163,10 @@ jQuery(document).ready(function ($) {
     /**
      * Create map and center it in the center of Israel
      */
-    function createMap(lat = 32.61074307932485, long = 36.474776492187516) {
+    function createMap() {
         let mapOptions = {
-            center: new google.maps.LatLng(lat, long)
+            center: new google.maps.LatLng(centerLat, centerLong),
+            zoom: zoomValue
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
@@ -177,6 +181,7 @@ jQuery(document).ready(function ($) {
         kmlLayer = new google.maps.KmlLayer({
             url: `${schools_and_map_filter_ajax_obj.kmz_file}?ver=${today.getDate()}`
         });
+		console.log(kmlLayer);
         resetMap();
     }
 
@@ -185,7 +190,9 @@ jQuery(document).ready(function ($) {
      */
     function resetMap() {
         if (typeof kmlLayer !== 'undefined') {
-            kmlLayer.setMap(map);
+            // Set the map without using the kmlLayer, because when kmlLayer doesn't exist, the map setting doesn't work
+            map.setCenter(new google.maps.LatLng(centerLat, centerLong));
+            map.setZoom(zoomValue);
             mapIsReset = true;
         }
     }

@@ -1,12 +1,12 @@
 "use strict";
 
-function _instanceof(left, right) {
-    if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
-        return !!right[Symbol.hasInstance](left);
-    } else {
-        return left instanceof right;
-    }
-}
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 jQuery(document).ready(function ($) {
     /**********************************
@@ -26,6 +26,10 @@ jQuery(document).ready(function ($) {
     var mapIsReset = true;
     var infoWindowWrapperClass = 'info_window_wrapper';
     var elementToWatchForAccessibility = "page";
+    var centerLat = 32;
+    var centerLong = 36.474776492187516;
+    var zoomValue = 4; // With kmz layer zoom 8 is good. Without it, 4 is needed as 8 is too close
+
     /**********************************
      ************* EVENTS *************
      **********************************/
@@ -167,10 +171,9 @@ jQuery(document).ready(function ($) {
 
 
     function createMap() {
-        var lat = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32.61074307932485;
-        var long = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 36.474776492187516;
         var mapOptions = {
-            center: new google.maps.LatLng(lat, long)
+            center: new google.maps.LatLng(centerLat, centerLong),
+            zoom: zoomValue
         };
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
     }
@@ -197,7 +200,9 @@ jQuery(document).ready(function ($) {
 
     function resetMap() {
         if (typeof kmlLayer !== 'undefined') {
-            kmlLayer.setMap(map);
+            // Set the map without using the kmlLayer, because when kmlLayer doesn't exist, the map setting doesn't work
+            map.setCenter(new google.maps.LatLng(centerLat, centerLong));
+            map.setZoom(zoomValue);
             mapIsReset = true;
         }
     }
@@ -544,12 +549,11 @@ jQuery(document).ready(function ($) {
         });
 
         if (infoArr.length > 0) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var _iterator = _createForOfIteratorHelper(infoArr),
+                _step;
 
             try {
-                for (var _iterator = infoArr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
                     var infoData = _step.value;
                     var info = decodeURI(encodeURI(infoData).replace(/%E2%80%8E/g, "")) // some strings come with these characters attached and some dont, and it affects the results of indexOf
                         .replace(label, "").replace(schools_and_map_filter_ajax_obj.strMarkerDescription, "").replace(/target="_blank"/g, "").trim();
@@ -563,18 +567,9 @@ jQuery(document).ready(function ($) {
                     }
                 }
             } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
+                _iterator.e(err);
             } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return != null) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
+                _iterator.f();
             }
         }
 
@@ -717,7 +712,6 @@ jQuery(document).ready(function ($) {
         var rect = el.getBoundingClientRect();
         return rect.top >= 0 && rect.top <= $(window).height() || rect.bottom >= 0 && rect.bottom <= $(window).height();
     }
-
     /***************************************
      * ******* A11y Functionality ******** *
      ***************************************/
@@ -744,12 +738,11 @@ jQuery(document).ready(function ($) {
         }; // In this callback function we traverse the map's child nodes and assign them a transparent background
 
         var callback = function callback(mutationsList) {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            var _iterator2 = _createForOfIteratorHelper(mutationsList),
+                _step2;
 
             try {
-                for (var _iterator2 = mutationsList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
                     var mutation = _step2.value;
 
                     if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
@@ -770,18 +763,9 @@ jQuery(document).ready(function ($) {
                     }
                 }
             } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
+                _iterator2.e(err);
             } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
+                _iterator2.f();
             }
         }; // Create an observer instance linked to the callback function
 
@@ -790,7 +774,6 @@ jQuery(document).ready(function ($) {
 
         observer.observe(targetNode, config);
     }
-
     /**
      * Return if current element should change style.
      * Needed to keep the accessibility style for the infoWindow
